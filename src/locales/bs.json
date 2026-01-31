@@ -1,0 +1,333 @@
+{
+  "counter": "Brojač",
+  "presets": "Liste",
+  "newPreset": "Nova lista",
+  "newDhikr": "Novi zikr",
+  "content": "Sadržaj",
+  "library": "Biblioteka",
+  "settings": "Postavke",
+  "vibration": "Vibracija",
+  "examples": "Primjeri",
+  "notSupported": "Nije podržano na ovom uređaju",
+  "dailyResetTime": "Vrijeme resetiranja",
+  "language": "Jezik",
+  "theme": "Tema",
+  "light": "Svijetla",
+  "dark": "Tamna",
+  "dataManagement": "Upravljanje podacima",
+  "exportData": "Izvezi kopiju",
+  "importData": "Uvezi kopiju",
+  "importMerge": "Uvezi (Spoji)",
+  "importOverwrite": "Vrati kopiju (Prebriši)",
+  "exportLibrary": "Izvezi samo biblioteku",
+  "exportFull": "Izvezi potpunu kopiju",
+  "resetData": "Tvorničke postavke",
+  "dangerZone": "Opasna zona",
+  "confirmReset": "Jeste li sigurni da želite obrisati sve podatke? Ovo se ne može poništiti.",
+  "success": "Uspjeh",
+  "error": "Greška",
+  "lifetime": "Ukupno",
+  "daily": "Dnevno",
+  "reset": "Resetuj",
+  "recent": "Nedavno",
+  "unlimited": "Beskonačno",
+  "items": "Stavke",
+  "dua": "Dova",
+  "surah": "Sura",
+  "ayah": "Ajet",
+  "deed": "Djelo",
+  "global": "Globalno",
+  "done": "Završeno",
+  "preset": "Lista",
+  "all": "Sve",
+  "quranic": "Kur'anske",
+  "morning": "Jutarnje",
+  "evening": "Večernje",
+  "prophetic": "Poslaničke",
+  "noItemsFound": "Nema rezultata",
+  "listen": "Slušaj",
+  "stop": "Stop",
+  "useGlobalCount": "Koristi globalni brojač",
+  "addToPreset": "Dodaj u listu",
+  "targetCount": "Cilj",
+  "noPresetsFound": "Nema kreiranih listi",
+  "editPreset": "Uredi listu",
+  "target": "Cilj",
+  "addItem": "Dodaj stavku",
+  "selectItem": "Odaberi stavku",
+  "selectDhikr": "Odaberi zikr",
+  "addDhikr": "Dodaj zikr",
+  "count": "Broji",
+  "deletePresetConfirm": "Da li ste sigurni da želite obrisati ovu listu?",
+  "resetPresetConfirm": "Da li ste sigurni da želite resetovati napredak za ovu listu?",
+  "searchPlaceholder": "Pretraži...",
+  "save": "Sačuvaj",
+  "category": "Kategorija",
+  "title": "Naslov",
+  "native": "Bosanski",
+  "arabic": "Arapski",
+  "transliteration": "Transkripcija",
+  "translation": "Prevod",
+  "reference": "Referenca",
+  "deleteItem": "Obriši stavku",
+  "deleteItemConfirm": "Da li ste sigurni da želite obrisati ovu stavku?",
+  "titleRequired": "Naslov je obavezan",
+  "editItem": "Uredi stavku",
+  "statistics": "Statistika",
+  "description": "Opis",
+  "create": "Kreiraj",
+  "stats": "Statistika",
+  "backup": "Rezervna kopija",
+  "exportAll": "Puna kopija",
+  "recommended": "Preporučeno",
+  "exportDataOnly": "Samo struktura",
+  "restore": "Vraćanje",
+  "exportSuccess": "Izvoz uspješan",
+  "importSuccess": "Uvoz uspješan",
+  "resetAllData": "Obriši sve podatke",
+  "currentStreak": "Trenutni niz",
+  "bestStreak": "Najbolji niz",
+  "weeklyActivity": "Sedmična aktivnost",
+  "monthlyHeatmap": "Mjesečni pregled",
+  "streak": "Niz",
+  "days": "Dana",
+  "today": "Danas",
+  "week": "Sedmica",
+  "month": "Mjesec",
+  "learn": "Sufara",
+  "learnArabic": "Uči Arapski",
+  "masterLetters": "Savladaj alfabet i pravilan izgovor.",
+  "yourProgress": "Tvoj Napredak",
+  "lettersLearned": "Savladanih slova",
+  "takeQuiz": "Pokreni Kviz",
+  "testYourKnowledge": "Testiraj svoje znanje slova",
+  "quizComplete": "Kviz Završen!",
+  "youScored": "Rezultat",
+  "backToLearn": "Nazad na učenje",
+  "tryAgain": "Pokušaj ponovo",
+  "next": "Dalje",
+  "prev": "Nazad",
+  "finish": "Završi",
+  "whatLetterIsThis": "Koje je ovo slovo?",
+  "whichSymbolIs": "Koji je simbol za",
+  "markLearned": "Označi naučeno",
+  "markUnread": "Ponovi gradivo",
+  "letterForms": "Oblici slova",
+  "pronunciation": "Izgovor",
+  "letter": "Slovo",
+  "practice": "Vježba",
+  "readingPractice": "Vježba čitanja",
+  "wordGeneration": "Generator riječi",
+  "transcription": "Transkripcija",
+  "showTranscription": "Prikaži transkripciju",
+  "hideTranscription": "Sakrij transkripciju",
+  "reorder": "Složi",
+  "spellingTest": "Test spelovanja",
+  "test": "Test",
+  "allLetters": "Sva slova",
+  "learnedLetters": "Samo naučena slova",
+  "configurePractice": "Konfiguriši vježbu",
+  "generateWord": "Generiši riječ",
+  "play": "Igraj",
+  "check": "Provjeri",
+  "correct": "Tačno!",
+  "incorrect": "Netačno, pokušaj ponovo.",
+  "enterTranscription": "Unesi transkripciju",
+  "submit": "Potvrdi",
+  "read": "Čitaj",
+  "write": "Piši",
+  "tapLettersBelow": "Pritisni slova ispod",
+  "correctAnswer": "Tačan odgovor",
+  "letterNotFound": "Slovo nije pronađeno",
+  "backToList": "Nazad na listu",
+  "resetProgress": "Resetuj napredak",
+  "confirmResetProgress": "Da li ste sigurni da želite resetovati sav napredak učenja? Ovo se ne može poništiti.",
+  "constructWord": "Sastavi ovu riječ:",
+  "reorderMode": "Sastavljanje riječi",
+  "isolated": "Samostalno",
+  "initial": "Početno",
+  "medial": "Srednje",
+  "final": "Krajnje",
+  "letters": {
+    "alif": {
+      "name": "Elif",
+      "description": "Elif je prvo slovo arapskog alfabeta. To je jednostavna uspravna linija.",
+      "pronunciation": "Izgovara se kao dugo 'a' ili nosi kratki vokal. Izlazi iz praznine u ustima."
+    },
+    "ba": {
+      "name": "Ba",
+      "description": "Oblik poput čamca sa jednom tačkom ispod.",
+      "pronunciation": "Izgovara se kao naše 'B'. Usneni glas."
+    },
+    "ta": {
+      "name": "Ta",
+      "description": "Oblik sličan slovu Ba, ali sa dvije tačke iznad.",
+      "pronunciation": "Izgovara se kao naše 'T', vrh jezika dodiruje korijen gornjih zuba."
+    },
+    "tha": {
+      "name": "Sa",
+      "description": "Oblik sličan slovu Ba, ali sa tri tačke iznad.",
+      "pronunciation": "Mekani, 'vrskavi' glas. Vrh jezika se postavi između prednjih zuba (kao englesko 'th' u 'think')."
+    },
+    "jim": {
+      "name": "Džim",
+      "description": "Slovo sa trbuhom i jednom tačkom u sredini (ili ispod, zavisno od pozicije).",
+      "pronunciation": "Izgovara se kao naše 'Dž' ili mekše 'Đ'. Sredina jezika dodiruje nepce."
+    },
+    "ha": {
+      "name": "Ha",
+      "description": "Oblik isti kao Džim, ali bez tačaka.",
+      "pronunciation": "Čisto, oštro 'Ha'. Izgovara se iz sredine grla, kao kad hoćete da zagrijete dlanove dahom."
+    },
+    "kha": {
+      "name": "Ha",
+      "description": "Oblik isti kao Džim i Ha, ali sa tačkom iznad.",
+      "pronunciation": "Hrapavo 'Ha'. Izgovara se iz gornjeg dijela grla, slično zvuku pri hrkanju ili čišćenju grla."
+    },
+    "dal": {
+      "name": "Dal",
+      "description": "Mali kosi oblik, otvoren na lijevo.",
+      "pronunciation": "Izgovara se kao naše 'D', ali mekše. Vrh jezika dodiruje korijen gornjih zuba."
+    },
+    "dhal": {
+      "name": "Zal",
+      "description": "Oblik isti kao Dal, ali sa tačkom iznad.",
+      "pronunciation": "Mekani, 'vrskavi' glas (kao englesko 'th' u 'that'). Vrh jezika između zuba."
+    },
+    "ra": {
+      "name": "Ra",
+      "description": "Luk koji se spušta ispod linije pisanja.",
+      "pronunciation": "Izgovara se kao naše 'R', ali krupnije i punije."
+    },
+    "zay": {
+      "name": "Zej",
+      "description": "Oblik isti kao Ra, ali sa tačkom iznad.",
+      "pronunciation": "Izgovara se kao naše 'Z'. Oštar zvuk."
+    },
+    "sin": {
+      "name": "Sin",
+      "description": "Tri mala zupca i veliki luk.",
+      "pronunciation": "Izgovara se kao oštro 'S'. Zviždav glas."
+    },
+    "shin": {
+      "name": "Šin",
+      "description": "Oblik isti kao Sin, ali sa tri tačke iznad.",
+      "pronunciation": "Izgovara se kao naše 'Š'."
+    },
+    "sad": {
+      "name": "Sad",
+      "description": "Petlja na početku i veliki luk.",
+      "pronunciation": "Krupno, emfatično 'S'. Usta su puna zraka pri izgovoru."
+    },
+    "dad": {
+      "name": "Dad",
+      "description": "Oblik isti kao Sad, ali sa tačkom iznad.",
+      "pronunciation": "Krupno, debelo 'D'. Rub jezika pritiska gornje kutnjake. Karakteristično slovo arapskog jezika."
+    },
+    "tah": {
+      "name": "Ta",
+      "description": "Zatvorena petlja sa uspravnom linijom odozgo.",
+      "pronunciation": "Krupno, debelo 'T'. Vrh jezika i nepce."
+    },
+    "zah": {
+      "name": "Za",
+      "description": "Oblik isti kao Ta (krupno), ali sa tačkom.",
+      "pronunciation": "Krupno, debelo 'Z' ili 'Zal'. Najkrupnije slovo. Vrh jezika na vrhovima gornjih zuba."
+    },
+    "ayn": {
+      "name": "Ajn",
+      "description": "Gornji dio liči na otvoreno 'C', donji veliki luk.",
+      "pronunciation": "Duboki grleni glas iz sredine grla. Zvuči kao pritisnuti samoglasnik."
+    },
+    "ghayn": {
+      "name": "Gajn",
+      "description": "Oblik isti kao Ajn, ali sa tačkom iznad.",
+      "pronunciation": "Grleni glas, sličan francuskom 'R'. Dolazi iz gornjeg dijela grla (grgljanje)."
+    },
+    "fa": {
+      "name": "Fa",
+      "description": "Mala petlja sa vratom i ravnim tijelom na liniji, jedna tačka.",
+      "pronunciation": "Izgovara se kao naše 'F'. Gornji zubi dodiruju donju usnu."
+    },
+    "qaf": {
+      "name": "Kaf",
+      "description": "Petlja sa dubokim lukom (kao kod Nun), dvije tačke iznad.",
+      "pronunciation": "Krupno, grleno 'K'. Korijen jezika dodiruje mehko nepce."
+    },
+    "kaf": {
+      "name": "Kef",
+      "description": "Uspravna linija koja prelazi u ravnu na liniji, često sa znakom unutra.",
+      "pronunciation": "Izgovara se kao naše 'K'. Tanji i mekši zvuk od Qaf (Kaf)."
+    },
+    "lam": {
+      "name": "Lam",
+      "description": "Oblik poput udice ili štapa kišobrana.",
+      "pronunciation": "Izgovara se kao naše 'L'."
+    },
+    "mim": {
+      "name": "Mim",
+      "description": "Mali krug sa repom koji ide dolje.",
+      "pronunciation": "Izgovara se kao naše 'M'. Usneni glas."
+    },
+    "nun": {
+      "name": "Nun",
+      "description": "Polukrug (zdjela) sa jednom tačkom iznad.",
+      "pronunciation": "Izgovara se kao naše 'N'. Nosni glas."
+    },
+    "he": {
+      "name": "Ha",
+      "description": "Kružni oblik, mijenja se zavisno od pozicije.",
+      "pronunciation": "Meko 'H', kao u našem jeziku (dah). Izgovara se iz dnu grla."
+    },
+    "waw": {
+      "name": "Wav",
+      "description": "Mala kružna glava sa repom prema dolje.",
+      "pronunciation": "Izgovara se kao englesko 'W' (u 'water'). Usne se skupe u krug."
+    },
+    "ya": {
+      "name": "Ja",
+      "description": "Oblik sličan labudu (samostalno) ili dvije tačke ispod (na početku/sredini).",
+      "pronunciation": "Izgovara se kao naše 'J'."
+    },
+    "fatha": {
+      "name": "Fetha",
+      "description": "Kratka kosa crtica iznad slova.",
+      "pronunciation": "Daje kratki vokal 'E' ili 'A' (zavisno od slova)."
+    },
+    "kasra": {
+      "name": "Kesra",
+      "description": "Kratka kosa crtica ispod slova.",
+      "pronunciation": "Daje kratki vokal 'I'."
+    },
+    "damma": {
+      "name": "Damma",
+      "description": "Mali znak sličan zarezu ili slovu 'waw' iznad slova.",
+      "pronunciation": "Daje kratki vokal 'U'."
+    },
+    "sukun": {
+      "name": "Sukun",
+      "description": "Mali kružić ili polukrug iznad slova.",
+      "pronunciation": "Označava odsustvo vokala (stajanje na suglasniku)."
+    },
+    "fathatan": {
+      "name": "Fethatan",
+      "description": "Dvije kose crtice iznad slova (tenvin).",
+      "pronunciation": "Daje zvuk 'an' ili 'en' na kraju riječi."
+    },
+    "kasratan": {
+      "name": "Kesratan",
+      "description": "Dvije kose crtice ispod slova (tenvin).",
+      "pronunciation": "Daje zvuk 'in' na kraju riječi."
+    },
+    "dammatan": {
+      "name": "Dammatan",
+      "description": "Dvije damme ili specifičan znak iznad slova (tenvin).",
+      "pronunciation": "Daje zvuk 'un' na kraju riječi."
+    },
+    "shadda": {
+      "name": "Teštid",
+      "description": "Znak u obliku slova 'w' iznad slova. Podvostručava suglasnik.",
+      "pronunciation": "Podvostručava glas"
+    }
+  }
+}

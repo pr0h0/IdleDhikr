@@ -1,0 +1,337 @@
+{
+  "counter": "Counter",
+  "presets": "Presets",
+  "newPreset": "New Preset",
+  "newDhikr": "New Dhikr",
+  "content": "Content",
+  "library": "Library",
+  "settings": "Settings",
+  "vibration": "Vibration",
+  "examples": "Examples",
+  "notSupported": "Not supported on this device",
+  "dailyResetTime": "Daily Reset Time",
+  "language": "Language",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "dataManagement": "Data Management",
+  "exportData": "Export Backup",
+  "importData": "Import Backup",
+  "exportLibrary": "Export Library Only",
+  "exportLibrarySubtitle": "JSON, No History",
+  "exportFull": "Export Full Backup",
+  "exportFullSubtitle": "JSON, Includes History",
+  "importMergeSubtitle": "Keep existing data",
+  "importOverwriteSubtitle": "Replaces all data",
+  "resetData": "Factory Reset",
+  "dangerZone": "Danger Zone",
+  "confirmReset": "Are you sure you want to reset all data? This cannot be undone.",
+  "success": "Success",
+  "error": "Error",
+  "lifetime": "Lifetime",
+  "daily": "Daily",
+  "reset": "Reset",
+  "recent": "Recent",
+  "unlimited": "Unlimited",
+  "items": "Items",
+  "dua": "Dua",
+  "surah": "Surah",
+  "ayah": "Ayah",
+  "deed": "Deed",
+  "global": "Global",
+  "done": "Done",
+  "preset": "Preset",
+  "all": "All",
+  "quranic": "Quranic",
+  "morning": "Morning",
+  "evening": "Evening",
+  "prophetic": "Prophetic",
+  "noItemsFound": "No items found",
+  "listen": "Listen",
+  "stop": "Stop",
+  "useGlobalCount": "Use Global Count",
+  "addToPreset": "Add to Preset",
+  "targetCount": "Target Count",
+  "noPresetsFound": "No presets found",
+  "editPreset": "Edit Preset",
+  "target": "Target",
+  "addItem": "Add Item",
+  "selectItem": "Select Item",
+  "selectDhikr": "Select Dhikr",
+  "addDhikr": "Add Dhikr",
+  "count": "Count",
+  "deletePresetConfirm": "Are you sure you want to delete this preset?",
+  "resetPresetConfirm": "Are you sure you want to reset progress for this preset?",
+  "searchPlaceholder": "Search...",
+  "save": "Save",
+  "category": "Category",
+  "title": "Title",
+  "native": "Native",
+  "arabic": "Arabic",
+  "transliteration": "Transliteration",
+  "translation": "Translation",
+  "reference": "Reference",
+  "deleteItem": "Delete Item",
+  "deleteItemConfirm": "Are you sure you want to delete this item?",
+  "titleRequired": "Title is required",
+  "editItem": "Edit Item",
+  "statistics": "Statistics",
+  "description": "Description",
+  "create": "Create",
+  "stats": "Statistics",
+  "backup": "Backup",
+  "exportAll": "Full Backup",
+  "recommended": "Recommended",
+  "exportDataOnly": "Structure Only",
+  "restore": "Restore",
+  "importMerge": "Import (Merge)",
+  "importOverwrite": "Restore (Overwrite)",
+  "exportSuccess": "Export successful",
+  "importSuccess": "Import successful",
+  "resetAllData": "Reset All Data",
+  "currentStreak": "Current Streak",
+  "bestStreak": "Best Streak",
+  "weeklyActivity": "Weekly Activity",
+  "monthlyHeatmap": "Monthly Overview",
+  "streak": "Streak",
+  "days": "Days",
+  "today": "Today",
+  "week": "Week",
+  "month": "Month",
+  "learn": "Learn",
+  "learnArabic": "Learn Arabic",
+  "masterLetters": "Master the alphabet and pronunciation.",
+  "yourProgress": "Your Progress",
+  "lettersLearned": "Letters Mastered",
+  "takeQuiz": "Take a Quiz",
+  "testYourKnowledge": "Test your knowledge of letters",
+  "quizComplete": "Quiz Complete!",
+  "youScored": "You scored",
+  "backToLearn": "Back to Learn",
+  "tryAgain": "Try Again",
+  "next": "Next",
+  "prev": "Previous",
+  "finish": "Finish",
+  "whatLetterIsThis": "What letter is this?",
+  "whichSymbolIs": "Which symbol is",
+  "markLearned": "Mark as Learned",
+  "markUnread": "Review Again",
+  "letterForms": "Letter Forms",
+  "pronunciation": "Pronunciation",
+  "letter": "Letter",
+  "practice": "Practice",
+  "readingPractice": "Reading Practice",
+  "wordGeneration": "Word Generator",
+  "transcription": "Transcription",
+  "showTranscription": "Show Transcription",
+  "hideTranscription": "Hide Transcription",
+  "reorder": "Reorder",
+  "spellingTest": "Spelling Test",
+  "test": "Test",
+  "allLetters": "All Letters",
+  "learnedLetters": "Learned Letters Only",
+  "configurePractice": "Configure Practice",
+  "generateWord": "Generate Word",
+  "play": "Play",
+  "check": "Check",
+  "correct": "Correct!",
+  "incorrect": "Incorrect, try again.",
+  "enterTranscription": "Enter Transcription",
+  "submit": "Submit",
+  "read": "Read",
+  "write": "Write",
+  "tapLettersBelow": "Tap letters below",
+  "correctAnswer": "Correct Answer",
+  "letterNotFound": "Letter not found",
+  "backToList": "Back to list",
+  "resetProgress": "Reset Progress",
+  "confirmResetProgress": "Are you sure you want to reset all learning progress? This cannot be undone.",
+  "constructWord": "Construct this word:",
+  "reorderMode": "Word Construction",
+  "isolated": "Isolated",
+  "initial": "Initial",
+  "medial": "Medial",
+  "final": "Final",
+  "letters": {
+    "fatha": {
+      "name": "Fatha",
+      "description": "A small diagonal line above a letter. Represents a short 'a' vowel.",
+      "pronunciation": "Short 'a' sound (above letter)"
+    },
+    "kasra": {
+      "name": "Kasra",
+      "description": "A small diagonal line below a letter. Represents a short 'i' vowel.",
+      "pronunciation": "Short 'i' sound (below letter)"
+    },
+    "damma": {
+      "name": "Damma",
+      "description": "A small loop (like a wow) above a letter. Represents a short 'u' vowel.",
+      "pronunciation": "Short 'u' sound (above letter)"
+    },
+    "sukun": {
+      "name": "Sukun",
+      "description": "A small circle above a letter indicating no vowel sound follows.",
+      "pronunciation": "Absence of vowel (stop)"
+    },
+    "alif": {
+      "name": "Alif",
+      "description": "Alif is the first letter. It is often a long vowel 'aa'. It is a 'selfish' letter, meaning it only connects to the right.",
+      "pronunciation": "Open 'a' sound like in 'father', or a glottal stop"
+    },
+    "ba": {
+      "name": "Ba",
+      "description": "Ba has a dot below. It connects from both sides.",
+      "pronunciation": "Like 'b' in 'bed'"
+    },
+    "ta": {
+      "name": "Ta",
+      "description": "Ta has two dots above. It connects from both sides.",
+      "pronunciation": "Like 't' in 'tea' (soft)"
+    },
+    "tha": {
+      "name": "Tha",
+      "description": "Tha has three dots above. It connects from both sides.",
+      "pronunciation": "Like 'th' in 'three'"
+    },
+    "jim": {
+      "name": "Jim",
+      "description": "Jim has a dot inside (or below in initial/medial). Connects both sides.",
+      "pronunciation": "Like 'j' in 'jam'"
+    },
+    "ha": {
+      "name": "Ha",
+      "description": "Ha has no dots. Connects both sides.",
+      "pronunciation": "Sharp 'h', from the throat. Like exhaling relief."
+    },
+    "kha": {
+      "name": "Kha",
+      "description": "Kha has a dot above. Connects both sides.",
+      "pronunciation": "Like 'ch' in 'Bach' or Scottish 'loch'"
+    },
+    "dal": {
+      "name": "Dal",
+      "description": "Dal sounds like D. It connects only to the right.",
+      "pronunciation": "Like 'd' in 'door'"
+    },
+    "dhal": {
+      "name": "Dhal",
+      "description": "Dhal sounds like TH (voiced). Dot above. Connects only to the right.",
+      "pronunciation": "Like 'th' in 'this' or 'that'"
+    },
+    "ra": {
+      "name": "Ra",
+      "description": "Ra connects only to the right.",
+      "pronunciation": "Rolled 'r', like Spanish 'pero'"
+    },
+    "zay": {
+      "name": "Zay",
+      "description": "Zay looks like Ra but with a dot above. Connects only to the right.",
+      "pronunciation": "Like 'z' in 'zoo'"
+    },
+    "sin": {
+      "name": "Sin",
+      "description": "Sin has three 'teeth'. Connects both sides.",
+      "pronunciation": "Like 's' in 'see'"
+    },
+    "shin": {
+      "name": "Shin",
+      "description": "Shin has three dots above. Connects both sides.",
+      "pronunciation": "Like 'sh' in 'she'"
+    },
+    "sad": {
+      "name": "Sad",
+      "description": "Sad has a loop shape. Connects both sides.",
+      "pronunciation": "Emphatic 'S'. Deep sound from throat."
+    },
+    "dad": {
+      "name": "Dad",
+      "description": "Dad is like Sad but with a dot above. Connects both sides.",
+      "pronunciation": "Emphatic 'D'. Deep sound."
+    },
+    "tah": {
+      "name": "Ta (Emphatic)",
+      "description": "Connects both sides.",
+      "pronunciation": "Emphatic 'T'. Deep sound."
+    },
+    "zah": {
+      "name": "Za (Emphatic)",
+      "description": "Like Ta but with a dot. Connects both sides.",
+      "pronunciation": "Emphatic 'TH' (like in 'that'). Deep sound."
+    },
+    "ayn": {
+      "name": "Ayn",
+      "description": "Ayn changes shape significantly in the middle/end. Connects both sides.",
+      "pronunciation": "Deep throat sound. Constrict throat."
+    },
+    "ghayn": {
+      "name": "Ghayn",
+      "description": "Like Ayn but with a dot above. Connects both sides.",
+      "pronunciation": "Gargling sound like French 'r'."
+    },
+    "fa": {
+      "name": "Fa",
+      "description": "Fa has one dot above. Connects both sides.",
+      "pronunciation": "Like 'f' in 'food'"
+    },
+    "qaf": {
+      "name": "Qaf",
+      "description": "Qaf has two dots above. Connects both sides.",
+      "pronunciation": "Deep 'k' from back of throat."
+    },
+    "kaf": {
+      "name": "Kaf",
+      "description": "Connects both sides.",
+      "pronunciation": "Like 'k' in 'keep'"
+    },
+    "lam": {
+      "name": "Lam",
+      "description": "Connects both sides.",
+      "pronunciation": "Like 'l' in 'look'"
+    },
+    "mim": {
+      "name": "Mim",
+      "description": "Connects both sides.",
+      "pronunciation": "Like 'm' in 'moon'"
+    },
+    "nun": {
+      "name": "Nun",
+      "description": "Dot above. Connects both sides.",
+      "pronunciation": "Like 'n' in 'noon'"
+    },
+    "ha_soft": {
+      "name": "Ha",
+      "description": "Soft H. Connects both sides. Changes shape in middle/end.",
+      "pronunciation": "Like 'h' in 'house'"
+    },
+    "waw": {
+      "name": "Waw",
+      "description": "Connects only to the right.",
+      "pronunciation": "Like 'w' in 'wow'"
+    },
+    "ya": {
+      "name": "Ya",
+      "description": "Two dots below. Connects both sides.",
+      "pronunciation": "Like 'y' in 'yes'"
+    },
+    "fathatan": {
+      "name": "Fathatan",
+      "description": "Double Fatha. Makes an 'an' sound. Usually appears on an Alif at the end of a word.",
+      "pronunciation": "'an' sound (usually on Alif)"
+    },
+    "kasratan": {
+      "name": "Kasratan",
+      "description": "Double Kasra. Makes an 'in' sound using below the letter.",
+      "pronunciation": "'in' sound"
+    },
+    "dammatan": {
+      "name": "Dammatan",
+      "description": "Double Damma. Makes an 'un' sound.",
+      "pronunciation": "'un' sound"
+    },
+    "shadda": {
+      "name": "Shadda",
+      "description": "A w-shaped sign above a letter. It emphasizes or doubles the consonant sound.",
+      "pronunciation": "Doubles the letter"
+    }
+  }
+}
