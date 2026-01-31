@@ -147,8 +147,7 @@ export default function EditPreset() {
               key={item.id}
               item={item}
               data={data}
-              index={idx + 1}
-              realIndex={idx}
+              index={idx}
               lang={lang}
               t={t}
               onUpdate={handleUpdateItem}

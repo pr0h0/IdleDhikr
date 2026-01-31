@@ -1,6 +1,5 @@
 "use client";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { db } from "@/lib/db";
 import { v4 as uuidv4 } from "uuid";
@@ -9,7 +8,6 @@ import Link from "next/link";
 
 export default function NewPresetPage() {
   const { t } = useTranslation();
-  const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
