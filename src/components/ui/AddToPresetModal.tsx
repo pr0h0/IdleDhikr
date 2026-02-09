@@ -21,7 +21,7 @@ export const AddToPresetModal: React.FC<AddToPresetModalProps> = ({
   onClose,
   itemToAdd,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const presets = useLiveQuery(() => db.presets.toArray());
   const [target, setTarget] = useState(itemToAdd.defaultTarget || 1);
 
@@ -88,7 +88,10 @@ export const AddToPresetModal: React.FC<AddToPresetModalProps> = ({
               className="flex items-center justify-between p-3 rounded-xl border border-slate-100 dark:border-slate-700 hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/10 transition-all text-left group"
             >
               <span className="font-medium text-slate-700 dark:text-slate-200">
-                {preset.title}
+                {typeof preset.title === "string"
+                  ? preset.title
+                  : preset.title[i18n.language as "en" | "bs"] ||
+                    preset.title.en}
               </span>
               <div className="bg-emerald-100 dark:bg-emerald-800 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity text-emerald-600 dark:text-emerald-300">
                 <Plus size={16} />

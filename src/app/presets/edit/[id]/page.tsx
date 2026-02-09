@@ -9,6 +9,7 @@ import { ArrowLeft, Plus, X, Save, Search } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Reorder } from "framer-motion";
 import { SortablePresetItem } from "./SortablePresetItem";
+import { PageGuide } from "@/components/ui/PageGuide";
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
@@ -119,6 +120,12 @@ export default function EditPreset() {
           <span>{t("save") || "Save"}</span>
         </button>
       </header>
+
+      <PageGuide
+        pageKey="presetManage"
+        title={t("guides.presetsManageTitle")}
+        description={t("guides.presetsManageDesc")}
+      />
 
       {/* Items List */}
       <Reorder.Group

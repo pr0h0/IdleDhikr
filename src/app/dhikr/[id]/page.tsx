@@ -28,6 +28,7 @@ import Link from "next/link";
 import { vibrate, cn, VIBRATION_PATTERNS } from "@/lib/utils";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useTTS } from "@/hooks/useTTS";
+import { PageGuide } from "@/components/ui/PageGuide";
 import { AddToPresetModal } from "@/components/ui/AddToPresetModal";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { getTodayDateString } from "@/lib/dateUtils";
@@ -296,6 +297,12 @@ export default function DhikrCounter() {
         </div>
       </div>
 
+      <PageGuide
+        pageKey="dhikr"
+        title={t("guides.dhikrTitle")}
+        description={t("guides.dhikrDesc")}
+      />
+
       {/* Main Content */}
       <div
         className="flex-1 flex flex-col items-center justify-center space-y-8 select-none"
@@ -335,7 +342,9 @@ export default function DhikrCounter() {
           )}
 
           <p className="text-xl md:text-2xl font-medium text-slate-700 dark:text-slate-200">
-            {dhikr.title[lang] || dhikr.title["en"]}
+            {typeof dhikr.title === "string"
+              ? dhikr.title
+              : dhikr.title[lang] || dhikr.title["en"]}
           </p>
         </div>
 
@@ -392,7 +401,10 @@ export default function DhikrCounter() {
           </div>
 
           <div className="text-xs text-slate-400 font-medium">
-            {preset?.title}
+            {preset &&
+              (typeof preset.title === "string"
+                ? preset.title
+                : preset.title[lang] || preset.title["en"])}
           </div>
 
           <div className="w-12 h-12 flex items-center justify-center">

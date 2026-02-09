@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/lib/db";
 import Link from "next/link";
-import { Plus, BookOpen } from "lucide-react";
+import { Plus, BookOpen, Search } from "lucide-react";
+import { PageGuide } from "@/components/ui/PageGuide";
 import { LanguageCode } from "@/types";
 import { useState } from "react";
 
@@ -11,20 +12,41 @@ export default function LibraryList() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language as LanguageCode;
   const [filter, setFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const duas = useLiveQuery(() => db.duas.toArray());
 
   if (!duas) return <div>Loading...</div>;
 
-  const categories = ["all", "dua", "surah", "ayah", "deed"];
+  const categories = ["all", "dua", "surah", "ayah", "deed", "hisnul_muslim"];
 
   const filteredDuas = duas.filter((d) => {
     // Hide items marked as hidden (e.g. specific prayer parts) unless specifically looking for them in a future admin mode
     // For now, just filtering them out of the main list
     if (d.hidden) return false;
 
-    if (filter === "all") return true;
-    return d.category === filter;
+    // Filter by Category
+    if (filter !== "all" && d.category !== filter) return false;
+
+    // Filter by Search
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      const title =
+        typeof d.title === "string"
+          ? d.title
+          : d.title[lang] || d.title["en"] || "";
+      const translation =
+        typeof d.translation === "string"
+          ? d.translation
+          : d.translation[lang] || d.translation["en"] || "";
+
+      return (
+        title.toLowerCase().includes(query) ||
+        translation.toLowerCase().includes(query)
+      );
+    }
+
+    return true;
   });
 
   return (
@@ -38,6 +60,12 @@ export default function LibraryList() {
           <Plus size={24} />
         </Link>
       </header>
+
+      <PageGuide
+        pageKey="library"
+        title={t("guides.libraryTitle")}
+        description={t("guides.libraryDesc")}
+      />
 
       {/* Filter Tabs */}
       <div className="flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
@@ -56,6 +84,21 @@ export default function LibraryList() {
         ))}
       </div>
 
+      {/* Search Input */}
+      <div className="relative">
+        <Search
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+          size={20}
+        />
+        <input
+          type="text"
+          placeholder={t("search") || "Search..."}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 border-none focus:ring-2 focus:ring-emerald-500 transition-all outline-none"
+        />
+      </div>
+
       <div className="grid gap-4">
         {filteredDuas.map((dua) => (
           <Link
@@ -66,7 +109,9 @@ export default function LibraryList() {
             <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:border-emerald-500 transition-colors">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="font-bold text-lg group-hover:text-emerald-600 transition-colors">
-                  {dua.title[lang] || dua.title["en"]}
+                  {typeof dua.title === "string"
+                    ? dua.title
+                    : dua.title[lang] || dua.title["en"]}
                 </h3>
                 <BookOpen
                   size={20}
@@ -74,10 +119,17 @@ export default function LibraryList() {
                 />
               </div>
               <p className="text-slate-500 text-sm line-clamp-2 mb-3">
-                {dua.translation[lang] || dua.translation["en"]}
+                {typeof dua.translation === "string"
+                  ? dua.translation
+                  : dua.translation[lang] || dua.translation["en"]}
               </p>
-              <div className="text-right font-amiri text-slate-400 text-lg opacity-60">
-                {dua.arabic.substring(0, 40)}...
+              <div
+                className="text-right font-amiri text-slate-400 text-lg opacity-60"
+                dir="rtl"
+              >
+                {dua.arabic.length > 40
+                  ? `${dua.arabic.substring(0, 40)}...`
+                  : dua.arabic}
               </div>
             </div>
           </Link>

@@ -15,13 +15,14 @@ import {
   ArrowLeft,
   Settings2,
   RotateCcw,
-  ArrowRight,
-  Check,
   Volume2,
   Square,
   Plus,
-  List,
   BarChart2,
+  Check,
+  Edit,
+  ArrowRight,
+  List,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -260,12 +261,20 @@ export default function DhikrCounter() {
             <BarChart2 size={24} />
           </button>
           {!presetId && (
-            <button
-              onClick={() => setIsAddToPresetOpen(true)}
-              className="p-2 text-slate-400 hover:text-green-600 dark:hover:text-green-400 transition-colors"
-            >
-              <Plus size={24} />
-            </button>
+            <>
+              <Link
+                href={`/dhikr/manage?id=${dhikr.id}`}
+                className="p-2 text-slate-400 hover:text-emerald-500 transition-colors"
+              >
+                <Edit size={24} />
+              </Link>
+              <button
+                onClick={() => setIsAddToPresetOpen(true)}
+                className="p-2 text-slate-400 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              >
+                <Plus size={24} />
+              </button>
+            </>
           )}
           <div className="relative">
             <button
@@ -344,8 +353,16 @@ export default function DhikrCounter() {
           )}
 
           <p className="text-xl md:text-2xl font-medium text-slate-700 dark:text-slate-200">
-            {dhikr.title[lang] || dhikr.title["en"]}
+            {typeof dhikr.title === "string"
+              ? dhikr.title
+              : dhikr.title[lang] || dhikr.title["en"]}
           </p>
+
+          {(dhikr.description?.en || dhikr.description?.[lang]) && (
+            <div className="max-w-md mx-auto p-3 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-lg text-sm text-slate-500 dark:text-slate-400">
+              {dhikr.description[lang] || dhikr.description.en}
+            </div>
+          )}
         </div>
 
         {/* The Button / Counter */}
@@ -401,7 +418,10 @@ export default function DhikrCounter() {
           </div>
 
           <div className="text-xs text-slate-400 font-medium">
-            {preset?.title}
+            {preset &&
+              (typeof preset.title === "string"
+                ? preset.title
+                : preset.title[lang] || preset.title["en"])}
           </div>
 
           <div className="w-12 h-12 flex items-center justify-center">

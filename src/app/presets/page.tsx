@@ -3,10 +3,11 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/lib/db";
 import Link from "next/link";
 import { Plus, Layers, ChevronRight } from "lucide-react";
+import { PageGuide } from "@/components/ui/PageGuide";
 import { useTranslation } from "react-i18next";
 
 export default function PresetList() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const presets = useLiveQuery(() => db.presets.orderBy("order").toArray());
 
   if (!presets) return <div>Loading...</div>;
@@ -23,6 +24,12 @@ export default function PresetList() {
         </Link>
       </header>
 
+      <PageGuide
+        pageKey="presets"
+        title={t("guides.presetsTitle")}
+        description={t("guides.presetsDesc")}
+      />
+
       <div className="grid grid-cols-1 gap-4">
         {presets.map((preset) => (
           <Link
@@ -38,7 +45,10 @@ export default function PresetList() {
               <div className="relative z-10 flex justify-between items-center">
                 <div>
                   <h3 className="font-bold text-lg mb-1 group-hover:text-emerald-600 transition-colors">
-                    {preset.title}
+                    {typeof preset.title === "string"
+                      ? preset.title
+                      : preset.title[i18n.language as "en" | "bs"] ||
+                        preset.title.en}
                   </h3>
                   <p className="text-sm text-slate-500 dark:text-slate-400">
                     {preset.items.length} {t("items")}

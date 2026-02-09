@@ -30,6 +30,8 @@ function ManageLibraryContent() {
   const [transliteration, setTransliteration] = useState("");
   const [translationEn, setTranslationEn] = useState("");
   const [translationNative, setTranslationNative] = useState("");
+  const [descriptionEn, setDescriptionEn] = useState("");
+  const [descriptionNative, setDescriptionNative] = useState("");
   const [reference, setReference] = useState("");
 
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
@@ -38,12 +40,34 @@ function ManageLibraryContent() {
     if (existingItem && !dataLoaded) {
       // eslint-disable-next-line
       setCategory(existingItem.category);
-      setTitleEn(existingItem.title["en"] || "");
-      setTitleNative(existingItem.title[lang] || "");
+
+      if (typeof existingItem.title === "string") {
+        setTitleEn(existingItem.title);
+        setTitleNative(existingItem.title);
+      } else {
+        setTitleEn(existingItem.title["en"] || "");
+        setTitleNative(existingItem.title[lang] || "");
+      }
+
       setArabic(existingItem.arabic || "");
       setTransliteration(existingItem.transliteration || "");
-      setTranslationEn(existingItem.translation["en"] || "");
-      setTranslationNative(existingItem.translation[lang] || "");
+
+      if (typeof existingItem.translation === "string") {
+        setTranslationEn(existingItem.translation);
+        setTranslationNative(existingItem.translation);
+      } else {
+        setTranslationEn(existingItem.translation["en"] || "");
+        setTranslationNative(existingItem.translation[lang] || "");
+      }
+
+      if (existingItem.description) {
+        if (typeof existingItem.description === "string") {
+          setDescriptionEn(existingItem.description);
+        } else {
+          setDescriptionEn(existingItem.description["en"] || "");
+          setDescriptionNative(existingItem.description[lang] || "");
+        }
+      }
       setReference(existingItem.reference || "");
       setDataLoaded(true);
     }
@@ -67,6 +91,10 @@ function ManageLibraryContent() {
       translation: {
         en: translationEn,
         [lang]: translationNative || translationEn,
+      },
+      description: {
+        en: descriptionEn,
+        [lang]: descriptionNative || descriptionEn,
       },
       reference,
     };
@@ -172,7 +200,8 @@ function ManageLibraryContent() {
           />
         </div>
 
-        {/* Transliteration */}
+        {/* Transliteration Removed */}
+        {/* 
         <div>
           <label className="block text-sm font-medium text-slate-500 mb-2">
             {t("transliteration") || "Transliteration"} (Optional)
@@ -182,7 +211,8 @@ function ManageLibraryContent() {
             onChange={(e) => setTransliteration(e.target.value)}
             className="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 min-h-[80px]"
           />
-        </div>
+        </div> 
+        */}
 
         {/* Translation */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -205,6 +235,36 @@ function ManageLibraryContent() {
                 value={translationNative}
                 onChange={(e) => setTranslationNative(e.target.value)}
                 className="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 min-h-[100px]"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Description / Virtues */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-500 mb-2">
+              {t("description") || "Description"} / {t("virtues") || "Virtues"}{" "}
+              (English)
+            </label>
+            <textarea
+              value={descriptionEn}
+              onChange={(e) => setDescriptionEn(e.target.value)}
+              className="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 min-h-[80px]"
+              placeholder="e.g. Recite 100 times for forgiveness"
+            />
+          </div>
+          {lang !== "en" && (
+            <div>
+              <label className="block text-sm font-medium text-slate-500 mb-2">
+                {t("description") || "Description"} /{" "}
+                {t("virtues") || "Virtues"} ({t("native") || "Native"})
+              </label>
+              <textarea
+                value={descriptionNative}
+                onChange={(e) => setDescriptionNative(e.target.value)}
+                className="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 min-h-[80px]"
+                placeholder="e.g. Proučiti 100 puta za oprost"
               />
             </div>
           )}

@@ -69,9 +69,12 @@ export default function QuizClient() {
     // Filter Pool
     let pool = ARABIC_LETTERS;
     if (onlyLearned && progress) {
+      // 1. Get IDs of learned letters ONLY (exclude esmaulhusna etc)
+      const validLetterIds = new Set(ARABIC_LETTERS.map((l) => l.id));
       const learnedIds = progress
-        .filter((p) => p.isLearned)
+        .filter((p) => p.isLearned && validLetterIds.has(p.letterId))
         .map((p) => p.letterId);
+
       if (learnedIds.length >= 4) {
         // Need at least 4 for options
         pool = ARABIC_LETTERS.filter((l) => learnedIds.includes(l.id));
@@ -109,7 +112,7 @@ export default function QuizClient() {
         }
 
         const arabic = correctParts
-          .map((p) => p.letter.arabic + p.vowel.arabic)
+          .map((p) => p.letter.arabic + p.vowel.arabic.replace(/ـ/g, ""))
           .join("");
         const trans = correctParts
           .map(
@@ -224,7 +227,10 @@ export default function QuizClient() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-8 p-6 relative">
         <div className="w-full max-w-sm absolute top-0 left-0 p-4">
-          <Link href="/learn" className="text-slate-500 hover:text-slate-900">
+          <Link
+            href="/learn/sufara"
+            className="text-slate-500 hover:text-slate-900"
+          >
             <ArrowLeft size={24} />
           </Link>
         </div>
@@ -399,13 +405,16 @@ export default function QuizClient() {
                   disabled={isAnswered}
                   onClick={() =>
                     setTextInput(
-                      (prev) => prev + part.letter.arabic + part.vowel.arabic,
+                      (prev) =>
+                        prev +
+                        part.letter.arabic +
+                        part.vowel.arabic.replace(/ـ/g, ""),
                     )
                   }
                   className="w-14 h-14 bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 rounded-lg font-amiri text-2xl shadow-sm hover:border-emerald-500 active:scale-95 transition-all flex items-center justify-center"
                 >
                   {part.letter.arabic}
-                  {part.vowel.arabic}
+                  {part.vowel.arabic.replace(/ـ/g, "")}
                 </button>
               ))}
               <button

@@ -193,7 +193,9 @@ export default function DuaDetail() {
 
       <div className="flex-1 space-y-8 text-center pt-8">
         <h1 className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
-          {dua.title[lang] || dua.title["en"]}
+          {typeof dua.title === "string"
+            ? dua.title
+            : dua.title[lang] || dua.title["en"]}
         </h1>
 
         <div className="font-amiri text-3xl md:text-4xl leading-loose text-slate-800 dark:text-slate-100 px-4 dir-rtl">
@@ -219,14 +221,18 @@ export default function DuaDetail() {
           </div>
         )}
 
+        {/*
         {dua.transliteration && (
           <div className="text-slate-500 italic px-6">
             {dua.transliteration}
           </div>
         )}
+        */}
 
         <div className="text-lg text-slate-700 dark:text-slate-300 px-6 leading-relaxed">
-          {dua.translation[lang] || dua.translation["en"]}
+          {typeof dua.translation === "string"
+            ? dua.translation
+            : dua.translation[lang] || dua.translation["en"]}
         </div>
       </div>
 
@@ -276,7 +282,10 @@ export default function DuaDetail() {
             </div>
 
             <div className="text-xs text-slate-400 font-medium">
-              {preset?.title}
+              {preset &&
+                (typeof preset.title === "string"
+                  ? preset.title
+                  : preset.title[lang] || preset.title["en"])}
             </div>
 
             <div className="w-12 h-12 flex items-center justify-center">

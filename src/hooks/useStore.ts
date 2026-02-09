@@ -26,7 +26,7 @@ export const useStore = create<AppState>()(
       setDailyResetTime: (time) => set({ dailyResetTime: time }),
       theme: "dark",
       setTheme: (theme) => set({ theme }),
-      language: "en",
+      language: "bs",
       setLanguage: (language) => set({ language }),
     }),
     {

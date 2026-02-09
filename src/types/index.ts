@@ -21,12 +21,14 @@ export interface Dhikr {
 
   // Defaults
   target: number; // Default target
+  order?: number; // Display order
 }
 
 export interface Dua {
   id: string;
-  category: "surah" | "ayah" | "dua" | "deed";
+  category: "surah" | "ayah" | "dua" | "deed" | "hisnul_muslim";
   title: TranslatableString;
+  description?: TranslatableString;
   arabic: string;
   transliteration?: string;
   translation: TranslatableString;
@@ -54,7 +56,7 @@ export interface HistoryRecord {
 
 export interface Preset {
   id: string;
-  title: string;
+  title: string | TranslatableString;
   description?: string;
   items: PresetItem[];
   order: number;

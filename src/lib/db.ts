@@ -78,6 +78,14 @@ export class IdleDhikrDB extends Dexie {
         await tx.table("duas").bulkPut(allDuas);
       });
 
+    this.version(15)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Add Ramadan Special Preset
+        const allPresets = INITIAL_PRESETS;
+        await tx.table("presets").bulkPut(allPresets);
+      });
+
     this.version(2)
       .stores({})
       .upgrade(async (tx) => {
@@ -113,6 +121,54 @@ export class IdleDhikrDB extends Dexie {
           .where("id")
           .anyOf(surahIds)
           .modify({ category: "surah" });
+      });
+
+    this.version(16)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Add Hisnul Muslim Duas
+        const allDuas = INITIAL_DUAS;
+        await tx.table("duas").bulkPut(allDuas);
+      });
+
+    this.version(17)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Add valid order to Dhikrs
+        const allDhikrs = INITIAL_DHIKRS;
+        await tx.table("dhikrs").bulkPut(allDhikrs);
+      });
+
+    this.version(18)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Update presets with translations
+        const allPresets = INITIAL_PRESETS;
+        await tx.table("presets").bulkPut(allPresets);
+      });
+
+    this.version(19)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Add Dua against enemies
+        const allDuas = INITIAL_DUAS;
+        await tx.table("duas").bulkPut(allDuas);
+      });
+
+    this.version(20)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Update Dua against enemies content
+        const allDuas = INITIAL_DUAS;
+        await tx.table("duas").bulkPut(allDuas);
+      });
+
+    this.version(21)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Update Hisnul Muslim translations (first batch)
+        const allDuas = INITIAL_DUAS;
+        await tx.table("duas").bulkPut(allDuas);
       });
 
     this.on("populate", () => {

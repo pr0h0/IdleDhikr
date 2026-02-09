@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { v4 as uuidv4 } from "uuid";
 import { Save, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { PageGuide } from "@/components/ui/PageGuide";
 
 export default function NewPresetPage() {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ export default function NewPresetPage() {
     const id = uuidv4();
     await db.presets.add({
       id,
-      title,
+      title: { en: title, bs: title },
       description,
       items: [],
       order: Date.now(),
@@ -33,7 +34,11 @@ export default function NewPresetPage() {
         </Link>
         <h1 className="text-2xl font-bold">{t("newPreset")}</h1>
       </header>
-
+      <PageGuide
+        pageKey="presetManage"
+        title={t("guides.presetsManageTitle")}
+        description={t("guides.presetsManageDesc")}
+      />
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           required

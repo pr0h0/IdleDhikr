@@ -200,7 +200,9 @@ export default function DuaDetail() {
 
       <div className="flex-1 space-y-8 text-center pt-8">
         <h1 className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
-          {dua.title[lang] || dua.title["en"]}
+          {typeof dua.title === "string"
+            ? dua.title
+            : dua.title[lang] || dua.title["en"]}
         </h1>
 
         <div className="font-amiri text-3xl md:text-4xl leading-loose text-slate-800 dark:text-slate-100 px-4 dir-rtl">
@@ -226,15 +228,30 @@ export default function DuaDetail() {
           </div>
         )}
 
+        {/* Transliteration Removed
         {dua.transliteration && (
-          <div className="text-slate-500 italic px-6">
+          <div className="text-slate-500 italic px-6 text-lg">
             {dua.transliteration}
           </div>
         )}
+        */}
 
-        <div className="text-lg text-slate-700 dark:text-slate-300 px-6 leading-relaxed">
-          {dua.translation[lang] || dua.translation["en"]}
+        <div className="text-xl text-slate-700 dark:text-slate-300 px-6 leading-relaxed">
+          {typeof dua.translation === "string"
+            ? dua.translation
+            : dua.translation[lang] || dua.translation["en"]}
         </div>
+
+        {(dua.description?.en || dua.description?.[lang]) && (
+          <div className="mx-6 p-4 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-900/30 rounded-xl text-sm text-emerald-800 dark:text-emerald-100">
+            <h3 className="font-bold mb-1 uppercase text-xs tracking-wider opacity-70">
+              {t("virtues") || "Virtues / Notes"}
+            </h3>
+            {typeof dua.description === "string"
+              ? dua.description
+              : dua.description[lang] || dua.description.en}
+          </div>
+        )}
       </div>
 
       {presetId && (
@@ -283,7 +300,10 @@ export default function DuaDetail() {
             </div>
 
             <div className="text-xs text-slate-400 font-medium">
-              {preset?.title}
+              {preset &&
+                (typeof preset.title === "string"
+                  ? preset.title
+                  : preset.title[lang] || preset.title["en"])}
             </div>
 
             <div className="w-12 h-12 flex items-center justify-center">

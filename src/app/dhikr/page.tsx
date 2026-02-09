@@ -7,6 +7,7 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 import { LanguageCode } from "@/types";
 import { useStore } from "@/hooks/useStore";
+import { PageGuide } from "@/components/ui/PageGuide";
 
 export default function DhikrList() {
   const { t, i18n } = useTranslation();
@@ -18,22 +19,30 @@ export default function DhikrList() {
 
   if (!dhikrs) return <div>Loading...</div>;
 
-  const filteredDhikrs = dhikrs.filter((d) => {
-    if (filter === "all") return true;
-    return d.category === filter;
-  });
+  const filteredDhikrs = dhikrs
+    .filter((d) => {
+      if (filter === "all") return true;
+      return d.category === filter;
+    })
+    .sort((a, b) => (a.order || 999) - (b.order || 999));
 
   return (
     <div className="space-y-6 pb-20">
       <header className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">{t("counter")}</h1>
         <Link
-          href="/dhikr/new"
+          href="/dhikr/manage"
           className="bg-emerald-600 text-white p-2 rounded-full shadow-lg"
         >
           <Plus size={24} />
         </Link>
       </header>
+
+      <PageGuide
+        pageKey="dhikrList"
+        title={t("guides.dhikrListTitle")}
+        description={t("guides.dhikrListDesc")}
+      />
 
       {/* Filter Tabs */}
       <div className="flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
@@ -66,7 +75,9 @@ export default function DhikrList() {
                   {dhikr.arabic}
                 </div>
                 <h3 className="font-semibold text-slate-900 dark:text-slate-100">
-                  {dhikr.title[lang] || dhikr.title["en"]}
+                  {typeof dhikr.title === "string"
+                    ? dhikr.title
+                    : dhikr.title[lang] || dhikr.title["en"]}
                 </h3>
                 {dhikr.target > 0 && (
                   <div className="w-full bg-slate-100 dark:bg-slate-700 h-1.5 mt-2 rounded-full overflow-hidden">

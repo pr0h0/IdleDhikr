@@ -92,7 +92,11 @@ export default function PresetDetail() {
       </header>
 
       <div className="bg-emerald-600 text-white p-6 rounded-3xl shadow-lg relative overflow-hidden mb-6">
-        <h1 className="text-2xl font-bold relative z-10">{preset.title}</h1>
+        <h1 className="text-2xl font-bold relative z-10">
+          {typeof preset.title === "string"
+            ? preset.title
+            : preset.title[lang] || preset.title.en}
+        </h1>
         <p className="opacity-80 relative z-10">{preset.description}</p>
         <Layers size={100} className="absolute -bottom-4 -right-4 opacity-10" />
       </div>

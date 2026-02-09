@@ -3,28 +3,28 @@ import { ArabicLetter } from "@/types";
 export const ARABIC_VOWELS = [
   {
     id: "fatha",
-    arabic: "\u064E",
+    arabic: "\u0640\u064E",
     name: "Fatha",
     sound: "a",
     transcription: "a",
   },
   {
     id: "kasra",
-    arabic: "\u0650",
+    arabic: "\u0640\u0650",
     name: "Kasra",
     sound: "i",
     transcription: "i",
   },
   {
     id: "damma",
-    arabic: "\u064F",
+    arabic: "\u0640\u064F",
     name: "Damma",
     sound: "u",
     transcription: "u",
   },
   {
     id: "sukun",
-    arabic: "\u0652",
+    arabic: "\u0640\u0652",
     name: "Sukun",
     sound: "skip",
     transcription: "",
@@ -36,10 +36,10 @@ export const ARABIC_LETTERS: ArabicLetter[] = [
   {
     id: "fatha",
     name: "Fatha",
-    arabic: "◌َ",
+    arabic: "ـَ",
     transliteration: "a",
     pronunciation: "Short 'a' sound (above letter)",
-    forms: { isolated: "◌َ", initial: "◌َ", medial: "◌َ", final: "◌َ" },
+    forms: { isolated: "ـَ", initial: "ـَ", medial: "ـَ", final: "ـَ" },
     description:
       "A small diagonal line above a letter. Represents a short 'a' vowel.",
     connection: "right",
@@ -48,10 +48,10 @@ export const ARABIC_LETTERS: ArabicLetter[] = [
   {
     id: "kasra",
     name: "Kasra",
-    arabic: "◌ِ",
+    arabic: "ـِ",
     transliteration: "i",
     pronunciation: "Short 'i' sound (below letter)",
-    forms: { isolated: "◌ِ", initial: "◌ِ", medial: "◌ِ", final: "◌ِ" },
+    forms: { isolated: "ـِ", initial: "ـِ", medial: "ـِ", final: "ـِ" },
     description:
       "A small diagonal line below a letter. Represents a short 'i' vowel.",
     connection: "right",
@@ -60,10 +60,10 @@ export const ARABIC_LETTERS: ArabicLetter[] = [
   {
     id: "damma",
     name: "Damma",
-    arabic: "◌ُ",
+    arabic: "ـُ",
     transliteration: "u",
     pronunciation: "Short 'u' sound (above letter)",
-    forms: { isolated: "◌ُ", initial: "◌ُ", medial: "◌ُ", final: "◌ُ" },
+    forms: { isolated: "ـُ", initial: "ـُ", medial: "ـُ", final: "ـُ" },
     description:
       "A small loop (like a wow) above a letter. Represents a short 'u' vowel.",
     connection: "right",
@@ -72,10 +72,10 @@ export const ARABIC_LETTERS: ArabicLetter[] = [
   {
     id: "sukun",
     name: "Sukun",
-    arabic: "◌ْ",
+    arabic: "ـْ",
     transliteration: "",
     pronunciation: "Absence of vowel (stop)",
-    forms: { isolated: "◌ْ", initial: "◌ْ", medial: "◌ْ", final: "◌ْ" },
+    forms: { isolated: "ـْ", initial: "ـْ", medial: "ـْ", final: "ـْ" },
     description:
       "A small circle above a letter indicating no vowel sound follows.",
     connection: "right",
@@ -84,10 +84,10 @@ export const ARABIC_LETTERS: ArabicLetter[] = [
   {
     id: "fathatan",
     name: "Fathatan",
-    arabic: "◌ً",
+    arabic: "ـً",
     transliteration: "an",
     pronunciation: "'an' sound (usually on Alif)",
-    forms: { isolated: "◌ً", initial: "◌ً", medial: "◌ً", final: "◌ً" },
+    forms: { isolated: "ـً", initial: "ـً", medial: "ـً", final: "ـً" },
     description:
       "Double Fatha. Makes an 'an' sound. Usually appears on an Alif at the end of a word.",
     connection: "right",
@@ -96,10 +96,10 @@ export const ARABIC_LETTERS: ArabicLetter[] = [
   {
     id: "kasratan",
     name: "Kasratan",
-    arabic: "◌ٍ",
+    arabic: "ـٍ",
     transliteration: "in",
     pronunciation: "'in' sound",
-    forms: { isolated: "◌ٍ", initial: "◌ٍ", medial: "◌ٍ", final: "◌ٍ" },
+    forms: { isolated: "ـٍ", initial: "ـٍ", medial: "ـٍ", final: "ـٍ" },
     description: "Double Kasra. Makes an 'in' sound using below the letter.",
     connection: "right",
     type: "vowel",
@@ -107,10 +107,10 @@ export const ARABIC_LETTERS: ArabicLetter[] = [
   {
     id: "dammatan",
     name: "Dammatan",
-    arabic: "◌ٌ",
+    arabic: "ـٌ",
     transliteration: "un",
     pronunciation: "'un' sound",
-    forms: { isolated: "◌ٌ", initial: "◌ٌ", medial: "◌ٌ", final: "◌ٌ" },
+    forms: { isolated: "ـٌ", initial: "ـٌ", medial: "ـٌ", final: "ـٌ" },
     description: "Double Damma. Makes an 'un' sound.",
     connection: "right",
     type: "vowel",
@@ -118,10 +118,10 @@ export const ARABIC_LETTERS: ArabicLetter[] = [
   {
     id: "shadda",
     name: "Shadda",
-    arabic: "◌ّ",
+    arabic: "ـّ",
     transliteration: "",
     pronunciation: "Doubles the letter",
-    forms: { isolated: "◌ّ", initial: "◌ّ", medial: "◌ّ", final: "◌ّ" },
+    forms: { isolated: "ـّ", initial: "ـّ", medial: "ـّ", final: "ـّ" },
     description:
       "A w-shaped sign above a letter. It emphasizes or doubles the consonant sound.",
     connection: "right",

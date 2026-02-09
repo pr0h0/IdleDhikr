@@ -6,15 +6,7 @@ import { db } from "@/lib/db";
 import { ARABIC_LETTERS, ARABIC_VOWELS } from "@/lib/arabicData";
 import { ArabicLetter } from "@/types";
 import { useTranslation } from "react-i18next";
-import {
-  Volume2,
-  RefreshCw,
-  Eye,
-  EyeOff,
-  Check,
-  X,
-  ArrowLeft,
-} from "lucide-react";
+import { Volume2, RefreshCw, Check, X, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -92,7 +84,7 @@ export default function PracticePage() {
     // Note: Simple concatenation. True Arabic reshaping happens by the font/browser rendering engine automatically
     // as long as the characters are in the correct order.
     const arabic = wordParts
-      .map((p) => p.letter.arabic + p.vowel.arabic)
+      .map((p) => p.letter.arabic + p.vowel.arabic.replace(/ـ/g, ""))
       .join("");
 
     // Transcription Logic
@@ -165,7 +157,7 @@ export default function PracticePage() {
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <Link
-            href="/learn"
+            href="/learn/sufara"
             className="p-2 -ml-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500"
           >
             <ArrowLeft size={24} />
@@ -243,6 +235,7 @@ export default function PracticePage() {
               {currentWord.arabic}
             </div>
 
+            {/* Transcription Display Removed
             {showTrans ? (
               <div className="text-2xl font-bold text-slate-500 mb-8 tracking-widest">
                 {currentWord.trans}
@@ -250,6 +243,8 @@ export default function PracticePage() {
             ) : (
               <div className="h-8 mb-8" /> // Spacer
             )}
+            */}
+            <div className="h-4 mb-4" />
 
             <div className="flex gap-4">
               <button
@@ -258,12 +253,14 @@ export default function PracticePage() {
               >
                 <Volume2 size={32} />
               </button>
+              {/* Eye Button Removed
               <button
                 onClick={() => setShowTrans(!showTrans)}
                 className="p-4 rounded-full bg-slate-50 dark:bg-slate-700 text-slate-600 hover:scale-110 transition-transform"
               >
                 {showTrans ? <EyeOff size={32} /> : <Eye size={32} />}
               </button>
+              */}
               <button
                 onClick={generateWord}
                 className="p-4 rounded-full bg-slate-50 dark:bg-slate-700 text-slate-600 hover:scale-110 transition-transform"
@@ -327,13 +324,16 @@ export default function PracticePage() {
                   key={idx}
                   onClick={() =>
                     setUserInput(
-                      (prev) => prev + part.letter.arabic + part.vowel.arabic,
+                      (prev) =>
+                        prev +
+                        part.letter.arabic +
+                        part.vowel.arabic.replace(/ـ/g, ""),
                     )
                   }
                   className="w-16 h-16 bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 rounded-xl font-amiri text-3xl shadow-sm hover:border-emerald-500 active:scale-95 transition-all"
                 >
                   {part.letter.arabic}
-                  {part.vowel.arabic}
+                  {part.vowel.arabic.replace(/ـ/g, "")}
                 </button>
               ))}
               <button

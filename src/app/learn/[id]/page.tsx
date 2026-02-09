@@ -200,7 +200,7 @@ export default function LetterDetail() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh]">
         <p>{t("letterNotFound")}</p>
-        <Link href="/learn" className="text-emerald-500 underline mt-4">
+        <Link href="/learn/sufara" className="text-emerald-500 underline mt-4">
           {t("backToList")}
         </Link>
       </div>
@@ -212,7 +212,7 @@ export default function LetterDetail() {
       {/* Nav Header */}
       <div className="flex items-center justify-between mb-8">
         <Link
-          href="/learn"
+          href="/learn/sufara"
           className="p-2 -ml-2 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
         >
           <ArrowLeft size={24} />
