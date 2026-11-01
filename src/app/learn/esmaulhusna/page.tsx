@@ -106,7 +106,7 @@ const EsmaulhusnaPage = () => {
   );
 
   const learnedCount = learnedIds.size;
-  const totalNames = 99;
+  const totalNames = namesData.names.length;
   const progressPercentage = (learnedCount / totalNames) * 100;
 
   if (!isClient) return null;
@@ -249,13 +249,11 @@ function ListView({
                   {item.translationDisplay}
                 </h3>
               </div>
-              {/* Transcription Removed 
               <p
                 className={`text-sm ${item.isLearned ? "text-emerald-700 dark:text-emerald-300" : "text-slate-500 dark:text-slate-400"}`}
               >
-                {item.translationDisplay}
+                {item.transcription}
               </p>
-              */}
             </div>
           </div>
           <div className="text-right pl-4">
@@ -305,11 +303,10 @@ function TestView({
 
     // Shuffle and pick
     pool = pool.sort(() => Math.random() - 0.5);
-    if (!isLearnedOnly && pool.length > 20) pool = pool.slice(0, 10);
-    if (isLearnedOnly && pool.length > 20) pool = pool.slice(0, 20);
+    pool = pool.slice(0, isLearnedOnly ? 20 : 10);
 
     if (pool.length === 0) {
-      alert("No names match the filter.");
+      alert(t("noNamesMatchFilter"));
       return;
     }
 
@@ -368,7 +365,7 @@ function TestView({
 
   if (phase === "setup") {
     return (
-      <div className="flex flex-col h-[50vh] justify-center max-w-sm mx-auto space-y-8 animate-in fade-in zoom-in duration-300">
+      <div className="flex flex-col h-[50vh] justify-center max-w-sm mx-auto space-y-8 animate-sheet-in">
         {/* Re-implementing buttons properly */}
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-slate-900 p-6">
           <div className="w-full max-w-sm space-y-8">
@@ -431,7 +428,7 @@ function TestView({
 
   if (phase === "summary") {
     return (
-      <div className="flex flex-col items-center justify-center h-[60vh] space-y-8 text-center animate-in fade-in zoom-in">
+      <div className="flex flex-col items-center justify-center h-[60vh] space-y-8 text-center animate-sheet-in">
         <div className="relative">
           <Trophy className="w-24 h-24 text-yellow-400 drop-shadow-lg" />
           <Sparkles className="absolute -top-2 -right-2 text-amber-500 w-8 h-8 animate-bounce" />
@@ -441,9 +438,10 @@ function TestView({
             {t("testComplete") || "Test Complete!"}
           </h2>
           <p className="text-lg text-slate-500">
-            You scored{" "}
-            <strong className="text-emerald-500 text-2xl">{score}</strong> /{" "}
-            {questions.length}
+            {t("youScored")}{" "}
+            <strong className="text-emerald-500 text-2xl">
+              {score} / {questions.length}
+            </strong>
           </p>
         </div>
 
@@ -501,7 +499,7 @@ function TestView({
 
         {showFeedback && (
           <div
-            className={`text-lg font-bold animate-in fade-in slide-in-from-bottom-2 ${isCorrect ? "text-emerald-500" : "text-red-500"}`}
+            className={`text-lg font-bold animate-sheet-in ${isCorrect ? "text-emerald-500" : "text-red-500"}`}
           >
             {isCorrect
               ? t("correct") || "Correct!"
@@ -529,17 +527,15 @@ function TestView({
 
         {/* FEEDBACK STATE: Show only Correct + User Selection */}
         {showFeedback && (
-          <div className="space-y-4 animate-in fade-in duration-300">
+          <div className="space-y-4 animate-sheet-in">
             {/* Show Correct Answer Details */}
             <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl text-center">
               <div className="text-emerald-600 dark:text-emerald-400 font-bold text-lg mb-1">
                 {targetName.translationDisplay}
               </div>
-              {/* Transcription Removed
               <div className="text-emerald-600/70 dark:text-emerald-400/70 text-sm">
                 {targetName.transcription}
               </div>
-              */}
             </div>
 
             <div className="grid grid-cols-2 gap-3 pt-2">

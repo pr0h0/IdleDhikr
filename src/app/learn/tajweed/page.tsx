@@ -13,20 +13,20 @@ export default function TajweedListPage() {
   // Helper to categorize rules
   const getCategory = (rule: TajweedRule) => {
     if (rule.id.includes("nun") || rule.id.includes("tanwin"))
-      return "Nun Sakinah & Tanwin";
-    if (rule.id.includes("mim")) return "Mim Sakinah";
-    if (rule.id.includes("madd")) return "Madd (Elongation)";
+      return "nunSakinah";
+    if (rule.id.includes("mim")) return "mimSakinah";
+    if (rule.id.includes("madd")) return "madd";
     if (rule.id.includes("waqf") || rule.id.includes("ibtida"))
-      return "Stop & Start";
-    return "General Rules";
+      return "stopStart";
+    return "general";
   };
 
   const categories = [
-    "General Rules",
-    "Nun Sakinah & Tanwin",
-    "Mim Sakinah",
-    "Madd (Elongation)",
-    "Stop & Start",
+    "general",
+    "nunSakinah",
+    "mimSakinah",
+    "madd",
+    "stopStart",
   ];
 
   const groupedRules = categories.reduce(
@@ -74,7 +74,7 @@ export default function TajweedListPage() {
           return (
             <div key={category} className="space-y-3">
               <h2 className="text-lg font-bold text-slate-400 uppercase tracking-wider text-xs px-1">
-                {category}
+                {t(`tajweedCategories.${category}`)}
               </h2>
               <div className="grid gap-3">
                 {rules.map((rule) => (

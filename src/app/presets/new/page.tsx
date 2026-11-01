@@ -2,19 +2,21 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { db } from "@/lib/db";
-import { v4 as uuidv4 } from "uuid";
+
 import { Save, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { PageGuide } from "@/components/ui/PageGuide";
 
 export default function NewPresetPage() {
   const { t } = useTranslation();
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const id = uuidv4();
+    const id = crypto.randomUUID();
     await db.presets.add({
       id,
       title: { en: title, bs: title },
@@ -23,7 +25,7 @@ export default function NewPresetPage() {
       order: Date.now(),
     });
     // Redirect to edit page
-    window.location.href = `/presets/edit/${id}`;
+    router.push(`/presets/edit/${id}`);
   };
 
   return (

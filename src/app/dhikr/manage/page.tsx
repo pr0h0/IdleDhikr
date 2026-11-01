@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { db } from "@/lib/db";
 import { Dhikr, LanguageCode } from "@/types";
-import { v4 as uuidv4 } from "uuid";
+
 import { Save, ArrowLeft, Trash2 } from "lucide-react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
@@ -139,7 +139,7 @@ function DhikrForm({
     e.preventDefault();
 
     const dhikrData: Dhikr = {
-      id: initialData?.id || uuidv4(),
+      id: initialData?.id || crypto.randomUUID(),
       arabic,
       title: {
         en: titleEn,
@@ -183,7 +183,7 @@ function DhikrForm({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-slate-500 mb-2">
-                {t("title")} (English)
+                {t("title")} ({t("english")})
               </label>
               <input
                 required
@@ -197,14 +197,14 @@ function DhikrForm({
             {lang !== "en" && (
               <div>
                 <label className="block text-sm font-medium text-slate-500 mb-2">
-                  {t("title")} ({t("native") || "Native"})
+                  {t("title")} ({t("native")})
                 </label>
                 <input
                   type="text"
                   value={titleNative}
                   onChange={(e) => setTitleNative(e.target.value)}
                   className="w-full p-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700"
-                  placeholder="e.g. SubhanAllah"
+                  placeholder={t("placeholderDhikrTitle")}
                 />
               </div>
             )}
@@ -214,7 +214,7 @@ function DhikrForm({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-slate-500 mb-2">
-                {t("description")} (English)
+                {t("description")} ({t("english")})
               </label>
               <textarea
                 value={descriptionEn}
@@ -226,13 +226,13 @@ function DhikrForm({
             {lang !== "en" && (
               <div>
                 <label className="block text-sm font-medium text-slate-500 mb-2">
-                  {t("description")} ({t("native") || "Native"})
+                  {t("description")} ({t("native")})
                 </label>
                 <textarea
                   value={descriptionNative}
                   onChange={(e) => setDescriptionNative(e.target.value)}
                   className="w-full p-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 min-h-[80px]"
-                  placeholder="e.g. Korist: Oprost grijeha..."
+                  placeholder={t("placeholderDhikrDesc")}
                 />
               </div>
             )}

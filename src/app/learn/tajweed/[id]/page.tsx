@@ -28,12 +28,12 @@ export default function TajweedRulePage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-4">
         <AlertCircle size={48} className="text-slate-300" />
-        <p className="text-slate-500">Rule not found</p>
+        <p className="text-slate-500">{t("ruleNotFound")}</p>
         <Link
           href="/learn/tajweed"
           className="text-emerald-500 hover:underline"
         >
-          Back to Tajweed
+          {t("backToTajweed")}
         </Link>
       </div>
     );
@@ -50,7 +50,7 @@ export default function TajweedRulePage() {
           <ArrowLeft size={24} />
         </Link>
         <span className="text-xs font-bold text-slate-400 uppercase tracking-widest border border-slate-200 dark:border-slate-700 rounded-full px-3 py-1">
-          {mode === "learn" ? "Learning Mode" : "Quiz Mode"}
+          {mode === "learn" ? t("learningMode") : t("quizMode")}
         </span>
       </div>
 
@@ -106,6 +106,7 @@ export default function TajweedRulePage() {
 }
 
 function LearnView({ rule, lang }: { rule: TajweedRule; lang: "en" | "bs" }) {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -116,7 +117,7 @@ function LearnView({ rule, lang }: { rule: TajweedRule; lang: "en" | "bs" }) {
       {/* Description */}
       <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">
-          Description
+          {t("description")}
         </h3>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
           {rule.description[lang]}
@@ -127,13 +128,17 @@ function LearnView({ rule, lang }: { rule: TajweedRule; lang: "en" | "bs" }) {
       {rule.letters && rule.letters.length > 0 && (
         <div>
           <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 px-1">
-            Letters Involved
+            {t("lettersInvolved")}
           </h3>
           <div className="flex flex-wrap gap-3">
             {rule.letters.map((letter, i) => (
               <div
                 key={i}
-                className="w-14 h-14 flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border-2 border-emerald-100 dark:border-emerald-800 text-3xl font-amiri text-slate-800 dark:text-slate-100 shadow-sm"
+                className={`min-w-14 h-14 px-3 flex items-center justify-center bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border-2 border-emerald-100 dark:border-emerald-800 text-slate-800 dark:text-slate-100 shadow-sm ${
+                  /[؀-ۿ]/.test(letter)
+                    ? "text-3xl font-amiri"
+                    : "text-sm font-bold"
+                }`}
               >
                 {letter}
               </div>
@@ -146,7 +151,7 @@ function LearnView({ rule, lang }: { rule: TajweedRule; lang: "en" | "bs" }) {
       {rule.examples && rule.examples.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider px-1">
-            Examples
+            {t("examples")}
           </h3>
           {rule.examples.map((ex, i) => (
             <div
@@ -185,6 +190,7 @@ function QuizView({
   onBack: () => void;
   lang: "en" | "bs";
 }) {
+  const { t } = useTranslation();
   const [qIndex, setQIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -194,7 +200,7 @@ function QuizView({
   if (!rule.quizQuestions || rule.quizQuestions.length === 0) {
     return (
       <div className="text-center py-10 opacity-60">
-        <p>No quiz questions available for this rule yet.</p>
+        <p>{t("noQuizQuestions")}</p>
       </div>
     );
   }
@@ -237,11 +243,12 @@ function QuizView({
           <CheckCircle size={48} />
         </div>
         <div>
-          <h2 className="text-2xl font-bold px-4">Quiz Complete!</h2>
+          <h2 className="text-2xl font-bold px-4">{t("quizComplete")}</h2>
           <p className="text-slate-500 mt-2">
-            You scored{" "}
-            <strong className="text-emerald-500 text-xl">{score}</strong> out of{" "}
-            {rule.quizQuestions.length}
+            {t("youScored")}{" "}
+            <strong className="text-emerald-500 text-xl">
+              {t("scoreOutOf", { score, total: rule.quizQuestions.length })}
+            </strong>
           </p>
         </div>
         <div className="flex gap-4 justify-center">
@@ -249,13 +256,13 @@ function QuizView({
             onClick={restart}
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold hover:bg-slate-200"
           >
-            <RotateCcw size={18} /> Retry
+            <RotateCcw size={18} /> {t("tryAgain")}
           </button>
           <button
             onClick={onBack}
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 text-white font-bold shadow-lg hover:bg-emerald-600 shadow-emerald-500/20"
           >
-            <BookOpen size={18} /> Review Rule
+            <BookOpen size={18} /> {t("reviewRule")}
           </button>
         </div>
       </motion.div>
@@ -272,8 +279,10 @@ function QuizView({
     >
       {/* Progress */}
       <div className="flex justify-between items-end text-sm text-slate-400 px-1">
-        <span>Question {qIndex + 1}</span>
-        <span>{rule.quizQuestions.length} total</span>
+        <span>
+          {t("question")} {qIndex + 1}
+        </span>
+        <span>{t("questionsTotal", { count: rule.quizQuestions.length })}</span>
       </div>
       <div className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
         <div
@@ -328,12 +337,12 @@ function QuizView({
 
       {/* Next Button */}
       {selected !== null && (
-        <div className="pt-4 flex justify-end animate-in fade-in slide-in-from-bottom-2">
+        <div className="pt-4 flex justify-end animate-sheet-in">
           <button
             onClick={handleNext}
             className="flex items-center gap-2 px-8 py-3 bg-slate-800 text-white rounded-xl font-bold shadow-lg hover:bg-slate-900 transition-all"
           >
-            {isLast ? "Finish" : "Next Question"} <ArrowRight size={18} />
+            {isLast ? t("finish") : t("nextQuestion")} <ArrowRight size={18} />
           </button>
         </div>
       )}

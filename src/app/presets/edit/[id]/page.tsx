@@ -1,6 +1,7 @@
 "use client";
 
 import { useLiveQuery } from "dexie-react-hooks";
+import { Loading } from "@/components/ui/Loading";
 import { db } from "@/lib/db";
 import { notFound, useParams, useRouter } from "next/navigation";
 import { Dhikr, Dua, PresetItem, LanguageCode } from "@/types";
@@ -11,7 +12,7 @@ import { Reorder } from "framer-motion";
 import { SortablePresetItem } from "./SortablePresetItem";
 import { PageGuide } from "@/components/ui/PageGuide";
 
-const generateId = () => Math.random().toString(36).substr(2, 9);
+const generateId = () => crypto.randomUUID();
 
 export default function EditPreset() {
   const { id } = useParams();
@@ -40,7 +41,7 @@ export default function EditPreset() {
   }, [preset]);
 
   if (preset === undefined || !allDhikrs || !allDuas)
-    return <div>Loading...</div>;
+    return <Loading />;
   if (preset === null) return notFound();
 
   const filteredDhikrs = allDhikrs.filter(
@@ -210,7 +211,7 @@ export default function EditPreset() {
               {filteredDhikrs.length > 0 && (
                 <div>
                   <h4 className="text-xs font-bold text-slate-400 uppercase mb-2">
-                    Dhikr
+                    {t("dhikr")}
                   </h4>
                   <div className="space-y-2">
                     {filteredDhikrs.map((d) => (

@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "./Modal";
 import { CheckCircle2, AlertCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -17,8 +18,9 @@ export const AlertModal: React.FC<AlertModalProps> = ({
   title,
   message,
   type = "info",
-  buttonText = "OK",
+  buttonText,
 }) => {
+  const { t } = useTranslation();
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title}>
       <div className="space-y-4">
@@ -48,7 +50,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
             onClick={onClose}
             className="px-4 py-2 text-sm font-medium text-white bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 rounded-lg transition-colors"
           >
-            {buttonText}
+            {buttonText ?? t("ok")}
           </button>
         </div>
       </div>

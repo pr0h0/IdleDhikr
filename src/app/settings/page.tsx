@@ -74,7 +74,7 @@ export default function SettingsPage() {
         setAlertState({
           isOpen: true,
           title: t("success"),
-          message: "Data imported successfully",
+          message: t("importSuccess"),
           type: "success",
         });
         // Reload happens after closing alert ideally, but simplicity first
@@ -83,7 +83,7 @@ export default function SettingsPage() {
         setAlertState({
           isOpen: true,
           title: t("error"),
-          message: "Failed to import data",
+          message: t("importFailed"),
           type: "error",
         });
       }

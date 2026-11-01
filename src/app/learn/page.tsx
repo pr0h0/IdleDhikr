@@ -92,7 +92,7 @@ export default function LearnDashboard() {
         </Link>
 
         {/* Hifz */}
-        {/* <Link href="/learn/hifz" className="block group">
+        <Link href="/learn/hifz" className="block group">
           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm flex items-center justify-between hover:border-emerald-500 transition-all hover:shadow-md">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 font-bold text-xl group-hover:scale-110 transition-transform">
@@ -109,7 +109,7 @@ export default function LearnDashboard() {
               →
             </div>
           </div>
-        </Link> */}
+        </Link>
       </div>
     </div>
   );

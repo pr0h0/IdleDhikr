@@ -171,6 +171,42 @@ export class IdleDhikrDB extends Dexie {
         await tx.table("duas").bulkPut(allDuas);
       });
 
+    this.version(22)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Content audit: corrected duas, presets and dhikr texts, new duas.
+        await tx.table("duas").bulkPut(INITIAL_DUAS);
+        await tx.table("presets").bulkPut(INITIAL_PRESETS);
+        // Dhikrs carry user counters, so only refresh their text fields.
+        for (const d of INITIAL_DHIKRS) {
+          const updated = await tx
+            .table("dhikrs")
+            .update(d.id, { title: d.title, arabic: d.arabic });
+          if (!updated) await tx.table("dhikrs").add(d);
+        }
+        // 99 Names list was re-ordered to the standard Tirmidhi list:
+        // old ids 2-25 map to new ids 1-24; later old ids were wrong names.
+        const progress = tx.table("learningProgress");
+        const names = await progress
+          .where("letterId")
+          .startsWith("esmaulhusna_")
+          .toArray();
+        await progress.bulkDelete(names.map((n) => n.letterId));
+        await progress.bulkAdd(
+          names
+            .map((n) => ({ ...n, id: Number(n.letterId.split("_")[1]) }))
+            .filter((n) => n.id >= 2 && n.id <= 25)
+            .map(({ id, ...n }) => ({ ...n, letterId: `esmaulhusna_${id - 1}` })),
+        );
+      });
+
+    this.version(23)
+      .stores({})
+      .upgrade(async (tx) => {
+        // Reference check: Korkut wording and corrected citations.
+        await tx.table("duas").bulkPut(INITIAL_DUAS);
+      });
+
     this.on("populate", () => {
       this.dhikrs.bulkAdd(INITIAL_DHIKRS);
       this.presets.bulkAdd(INITIAL_PRESETS);

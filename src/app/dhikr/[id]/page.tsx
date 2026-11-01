@@ -1,6 +1,7 @@
 "use client";
 
 import { db } from "@/lib/db";
+import { Loading } from "@/components/ui/Loading";
 import { useStore } from "@/hooks/useStore";
 import {
   notFound,
@@ -114,7 +115,7 @@ export default function DhikrCounter() {
       };
     }, [preset, id, presetId, initialIndex]);
 
-  if (dhikr === undefined) return <div>Loading...</div>;
+  if (dhikr === undefined) return <Loading />;
   if (dhikr === null) return notFound();
 
   // Determine Display Values
@@ -142,40 +143,44 @@ export default function DhikrCounter() {
         await db.history.add({ date: today, itemId: historyItemId, count: 1 });
     }).catch(console.error);
 
-    // Logic
-    const nextCount = currentCount + 1;
-
+    // Atomic read-modify-write so rapid taps never read a stale count.
+    let nextCount = 0;
     if (activeItem && !isGlobalCount && preset && itemIndex !== -1) {
       // Update LOCAL Preset Item
-      const newItems = [...preset.items];
-      // Use verified itemIndex from useMemo
-      newItems[itemIndex] = { ...activeItem, count: nextCount };
-      await db.presets.update(preset.id, { items: newItems });
-
-      // Check if Preset is Fully Complete
-      const isPresetComplete = newItems.every(
-        (item) => item.count >= item.target && item.target > 0,
-      );
+      let isPresetComplete = false;
+      await db.presets
+        .where("id")
+        .equals(preset.id)
+        .modify((p) => {
+          const item = p.items[itemIndex];
+          nextCount = item.count = (item.count || 0) + 1;
+          isPresetComplete = p.items.every(
+            (i) => i.target > 0 && i.count >= i.target,
+          );
+        });
       if (isPresetComplete) {
-        const today = getTodayDateString();
         // Idempotent put: sets count to 1 indicating completion for the day
         db.history
           .put({ date: today, itemId: preset.id, count: 1 })
           .catch(console.error);
       }
-
-      // We calculate total lifetime on the dhikr anyway
-      await db.dhikrs.update(dhikr.id, {
-        countTotal: dhikr.countTotal + 1,
-        lastUpdated: Date.now(),
-      });
+      await db.dhikrs
+        .where("id")
+        .equals(dhikr.id)
+        .modify((d) => {
+          d.countTotal += 1;
+          d.lastUpdated = Date.now();
+        });
     } else {
       // Update GLOBAL Dhikr
-      await db.dhikrs.update(dhikr.id, {
-        countDaily: dhikr.countDaily + 1,
-        countTotal: dhikr.countTotal + 1,
-        lastUpdated: Date.now(),
-      });
+      await db.dhikrs
+        .where("id")
+        .equals(dhikr.id)
+        .modify((d) => {
+          nextCount = d.countDaily += 1;
+          d.countTotal += 1;
+          d.lastUpdated = Date.now();
+        });
     }
 
     // Check Goal
@@ -232,39 +237,43 @@ export default function DhikrCounter() {
   };
 
   return (
-    <div className="flex flex-col h-[80vh] relative">
+    <div className="relative flex min-h-[calc(100dvh-8.5rem)] flex-col">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="mb-4 flex items-center justify-between">
         <Link
           href={presetId ? `/presets/${presetId}` : "/dhikr"}
-          className="p-2 -ml-2 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+          className="grid size-10 place-items-center rounded-full bg-white/70 text-slate-500 shadow-sm hover:text-slate-800 dark:bg-slate-900/70 dark:hover:text-slate-200"
         >
-          <ArrowLeft size={24} />
+          <ArrowLeft size={20} />
         </Link>
-        <div className="text-sm font-medium text-slate-500 uppercase tracking-wider">
-          {dhikr.category}
+        <div className="rounded-full bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
+          {t(dhikr.category)}
         </div>
         <div className="flex items-center gap-1">
           <button
             onClick={() => setShowStats(true)}
-            className="p-2 text-slate-400 hover:text-blue-500 transition-colors"
+            aria-label={t("stats")}
+            className="grid size-10 place-items-center rounded-full text-slate-400 hover:bg-slate-500/10 hover:text-slate-700 dark:hover:text-slate-200"
           >
-            <BarChart2 size={24} />
+            <BarChart2 size={20} />
           </button>
           {!presetId && (
             <button
               onClick={() => setIsAddToPresetOpen(true)}
-              className="p-2 text-slate-400 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              aria-label={t("addToPreset")}
+              className="grid size-10 place-items-center rounded-full text-slate-400 hover:bg-slate-500/10 hover:text-slate-700 dark:hover:text-slate-200"
             >
-              <Plus size={24} />
+              <Plus size={20} />
             </button>
           )}
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
-              className="p-2 -mr-2 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+              aria-label={t("settings")}
+              aria-expanded={showMenu}
+              className="grid size-10 place-items-center rounded-full text-slate-400 hover:bg-slate-500/10 hover:text-slate-700 dark:hover:text-slate-200"
             >
-              <Settings2 size={24} />
+              <Settings2 size={20} />
             </button>
             {showMenu && (
               <div className="absolute right-0 top-10 w-56 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 p-1 z-50">
@@ -305,11 +314,11 @@ export default function DhikrCounter() {
 
       {/* Main Content */}
       <div
-        className="flex-1 flex flex-col items-center justify-center space-y-8 select-none"
+        className="flex flex-1 cursor-pointer touch-manipulation flex-col items-center justify-center gap-8 select-none"
         onClick={handleTap}
       >
         <div className="text-center space-y-4 pointer-events-none">
-          <h1 className="font-amiri text-5xl md:text-6xl text-slate-800 dark:text-emerald-400 leading-tight py-4">
+          <h1 dir="rtl" className="font-amiri text-5xl leading-snug text-slate-800 dark:text-emerald-300 md:text-6xl">
             {dhikr.arabic}
           </h1>
 
@@ -350,36 +359,60 @@ export default function DhikrCounter() {
 
         {/* The Button / Counter */}
         <motion.div
-          whileTap={{ scale: 0.95 }}
-          className={cn(
-            "w-64 h-64 rounded-full flex flex-col items-center justify-center shadow-2xl cursor-pointer relative overflow-hidden",
-            "bg-gradient-to-br from-emerald-500 to-emerald-700 text-white",
-            "active:shadow-inner",
-          )}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: "spring", stiffness: 600, damping: 30 }}
+          className="relative grid size-72 place-items-center"
         >
-          <span className="text-7xl font-bold z-10">{currentCount}</span>
-          <span className="text-emerald-100 mt-2 z-10 text-lg font-medium">
-            / {currentTarget > 0 ? currentTarget : "∞"}
-          </span>
-
-          {/* Mode Indicator */}
-          {activeItem && (
-            <span className="absolute top-8 text-[10px] uppercase tracking-widest opacity-50 font-bold">
-              {activeItem.useGlobalCount ? t("global") : t("preset")}
+          <svg viewBox="0 0 200 200" className="absolute inset-0 -rotate-90">
+            <circle cx="100" cy="100" r="94" fill="none" strokeWidth="6" className="stroke-slate-200 dark:stroke-slate-800" />
+            {currentTarget > 0 && progress > 0 && (
+              <circle
+                cx="100"
+                cy="100"
+                r="94"
+                fill="none"
+                strokeWidth="6"
+                strokeLinecap="round"
+                pathLength={100}
+                strokeDasharray="100"
+                strokeDashoffset={100 - Math.min(100, progress)}
+                className={cn(
+                  "transition-[stroke-dashoffset] duration-300 ease-out",
+                  progress >= 100 ? "stroke-amber-400" : "stroke-emerald-500",
+                )}
+              />
+            )}
+          </svg>
+          <div
+            className={cn(
+              "relative flex size-60 flex-col items-center justify-center rounded-full text-white shadow-2xl",
+              progress >= 100
+                ? "bg-gradient-to-br from-amber-400 to-amber-600 shadow-amber-500/30"
+                : "bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-emerald-600/30",
+            )}
+          >
+            {/* Mode Indicator */}
+            {activeItem && (
+              <span className="absolute top-10 text-[10px] font-bold uppercase tracking-widest opacity-60">
+                {activeItem.useGlobalCount ? t("global") : t("preset")}
+              </span>
+            )}
+            <motion.span
+              key={currentCount}
+              initial={{ scale: 0.85, opacity: 0.6 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="text-7xl font-bold tabular-nums"
+            >
+              {currentCount}
+            </motion.span>
+            <span className="mt-1 text-lg font-medium text-white/70">
+              / {currentTarget > 0 ? currentTarget : "∞"}
             </span>
-          )}
-
-          {/* Progress Fill Background */}
-          {currentTarget > 0 && (
-            <div
-              className="absolute bottom-0 left-0 w-full bg-black/10 transition-all duration-300 ease-out"
-              style={{ height: `${Math.min(100, progress)}%` }}
-            />
-          )}
+          </div>
         </motion.div>
 
         {/* Total Lifetime */}
-        <div className="text-slate-400 text-sm font-medium flex items-center gap-2 pointer-events-none">
+        <div className="pointer-events-none flex items-center gap-2 text-sm font-medium tabular-nums text-slate-400">
           <span>
             {t("lifetime")}: {dhikr.countTotal}
           </span>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useLiveQuery } from "dexie-react-hooks";
+import { Loading } from "@/components/ui/Loading";
 import { db } from "@/lib/db";
 import { notFound, useParams, useRouter } from "next/navigation";
 import { LanguageCode } from "@/types";
@@ -32,7 +33,7 @@ export default function PresetDetail() {
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
   const [isResetConfirmOpen, setIsResetConfirmOpen] = useState(false);
 
-  if (preset === undefined || !dhikrs || !duas) return <div>Loading...</div>;
+  if (preset === undefined || !dhikrs || !duas) return <Loading />;
   if (preset === null) return notFound();
 
   const getDhikr = (id: string) => dhikrs.find((d) => d.id === id);
@@ -179,12 +180,12 @@ export default function PresetDetail() {
         isOpen={isDeleteConfirmOpen}
         onClose={() => setIsDeleteConfirmOpen(false)}
         onConfirm={handleDelete}
-        title={t("dangerZone") || "Danger Zone"}
+        title={t("deletePreset")}
         message={
           t("deletePresetConfirm") ||
           "Are you sure you want to delete this preset?"
         }
-        confirmText="Delete"
+        confirmText={t("delete")}
         isDestructive={true}
       />
 

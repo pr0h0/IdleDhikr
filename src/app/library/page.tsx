@@ -1,5 +1,6 @@
 "use client";
 import { useTranslation } from "react-i18next";
+import { Loading } from "@/components/ui/Loading";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/lib/db";
 import Link from "next/link";
@@ -16,7 +17,7 @@ export default function LibraryList() {
 
   const duas = useLiveQuery(() => db.duas.toArray());
 
-  if (!duas) return <div>Loading...</div>;
+  if (!duas) return <Loading />;
 
   const categories = ["all", "dua", "surah", "ayah", "deed", "hisnul_muslim"];
 
@@ -92,7 +93,7 @@ export default function LibraryList() {
         />
         <input
           type="text"
-          placeholder={t("search") || "Search..."}
+          placeholder={t("searchPlaceholder")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 border-none focus:ring-2 focus:ring-emerald-500 transition-all outline-none"

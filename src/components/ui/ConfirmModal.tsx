@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "./Modal";
 import { AlertTriangle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -19,10 +20,11 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   onConfirm,
   title,
   message,
-  confirmText = "Confirm",
-  cancelText = "Cancel",
+  confirmText,
+  cancelText,
   isDestructive = false,
 }) => {
+  const { t } = useTranslation();
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title}>
       <div className="space-y-4">
@@ -42,7 +44,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
             onClick={onClose}
             className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
           >
-            {cancelText}
+            {cancelText ?? t("cancel")}
           </button>
           <button
             onClick={() => {
@@ -55,7 +57,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
                 : "bg-emerald-600 hover:bg-emerald-700"
             }`}
           >
-            {confirmText}
+            {confirmText ?? t("confirm")}
           </button>
         </div>
       </div>

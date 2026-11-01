@@ -1,6 +1,7 @@
 "use client";
 
 import { useLiveQuery } from "dexie-react-hooks";
+import { Loading } from "@/components/ui/Loading";
 import { db } from "@/lib/db";
 import {
   notFound,
@@ -95,7 +96,7 @@ export default function DuaDetail() {
       };
     }, [preset, id, presetId, initialIndex]);
 
-  if (dua === undefined) return <div>Loading...</div>;
+  if (dua === undefined) return <Loading />;
   if (dua === null) return notFound();
 
   const handleComplete = async () => {
@@ -221,19 +222,37 @@ export default function DuaDetail() {
           </div>
         )}
 
-        {/*
         {dua.transliteration && (
-          <div className="text-slate-500 italic px-6">
-            {dua.transliteration}
-          </div>
+          <details className="mx-6 text-left">
+            <summary className="cursor-pointer text-center text-xs font-semibold uppercase tracking-wider text-slate-400">
+              {t("transliteration")}
+            </summary>
+            <p className="mt-2 text-center italic text-slate-500">
+              {dua.transliteration}
+            </p>
+          </details>
         )}
-        */}
 
         <div className="text-lg text-slate-700 dark:text-slate-300 px-6 leading-relaxed">
           {typeof dua.translation === "string"
             ? dua.translation
             : dua.translation[lang] || dua.translation["en"]}
         </div>
+
+        {dua.description && (
+          <div className="card mx-2 p-4 text-left text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+            <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+              {t("notes")}
+            </div>
+            {dua.description[lang] || dua.description.en}
+          </div>
+        )}
+
+        {dua.reference && (
+          <div className="text-xs text-slate-400">
+            {t("reference")}: {dua.reference}
+          </div>
+        )}
       </div>
 
       {presetId && (

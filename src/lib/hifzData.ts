@@ -16,7 +16,7 @@ export const HIFZ_DATA: HifzSection[] = [
     content: {
       en: `
 ### The Foundation: Niyyah (Intention)
-The journey of memorizing the Quran begins in the heart. The Prophet (₽) said: *"Actions are judged by intentions."* Ensure your intention is solely to seek the pleasure of Allah, not to be called a "Hafiz" or for social status.
+The journey of memorizing the Quran begins in the heart. The Prophet (ﷺ) said: *"Actions are judged by intentions."* Ensure your intention is solely to seek the pleasure of Allah, not to be called a "Hafiz" or for social status.
 
 - **Check your heart daily**: Intentions can waver. Renew it before every session.
 - **Patience (Sabr)**: Hifz is a marathon, not a sprint. There will be days when memorization feels impossible. This is a test of your resolve.
@@ -192,7 +192,7 @@ Different people learn differently. Experiment to find your method.
 
 - **Visual Learners**: Focus heavily on the position of verses (top, bottom, middle of page). Using multiple colors to highlight keywords might help for initial learning (but stick to one clean Mushaf for the long run).
 - **Auditory Learners**: Need to hear the verse. Listen to a recording repeatedly before trying to memorize. Record yourself and listen back.
-- **Kinesthetic Learners**: Need movement. Walk around while reciting. Write the verses down on a whiteboard or notebook (this is a traditional method in Mauritania and Africa).
+- **Kinesthetic Learners**: Need movement. Walk around while reciting. Write the verses down on a whiteboard or notebook (this is a traditional method in Mauritania and West Africa).
 
 ### Conclusion
 Make lots of Dua. Every verse is a gift from Allah. Be grateful for what you have, and He will increase you.
@@ -202,8 +202,8 @@ Make lots of Dua. Every verse is a gift from Allah. Be grateful for what you hav
 Različiti ljudi uče na različite načine. Eksperimentišite da pronađete svoju metodu.
 
 - **Vizuelni tipovi**: Fokusiraju se jako na poziciju ajeta (vrh, dno, sredina stranice). Korištenje boja za isticanje ključnih riječi može pomoći u početku.
-- **Auditivni titovi**: Moraju čuti ajet. Slušajte snimak više puta prije nego pokušate pamtiti. Snimite sebe i preslušajte.
-- **Kinestetički tipovi**: Trebaju pokret. Hodajte dok učite. Zapisujte ajete na tablu ili u svesku (ovo je tradicionalna metoda u Mauritaniji i Africi).
+- **Auditivni tipovi**: Moraju čuti ajet. Slušajte snimak više puta prije nego pokušate pamtiti. Snimite sebe i preslušajte.
+- **Kinestetički tipovi**: Trebaju pokret. Hodajte dok učite. Zapisujte ajete na tablu ili u svesku (ovo je tradicionalna metoda u Mauritaniji i Zapadnoj Africi).
 
 ### Zaključak
 Činite mnogo Dove. Svaki ajet je poklon od Allaha. Budite zahvalni na onome što imate, i On će vam povećati.

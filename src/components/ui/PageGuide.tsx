@@ -3,7 +3,7 @@
 import { useGuideStore } from "@/hooks/useGuideStore";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Info } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface PageGuideProps {
   pageKey: string;
@@ -13,19 +13,15 @@ interface PageGuideProps {
 
 export function PageGuide({ pageKey, title, description }: PageGuideProps) {
   const { dismissedGuides, dismiss } = useGuideStore();
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // Only show if not dismissed
-    // We use useEffect to prevent hydration mismatch since localStorage is client-side
-    setIsVisible(!dismissedGuides.includes(pageKey));
-  }, [dismissedGuides, pageKey]);
-
-  if (!isVisible) return null;
+  const { t } = useTranslation();
+  // ClientLayout renders only after mount, so reading persisted state here is hydration-safe.
+  const isVisible = !dismissedGuides.includes(pageKey);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
+      {isVisible && (
       <motion.div
+        key={pageKey}
         initial={{ opacity: 0, y: -20, height: 0 }}
         animate={{ opacity: 1, y: 0, height: "auto" }}
         exit={{ opacity: 0, y: -20, height: 0 }}
@@ -33,12 +29,9 @@ export function PageGuide({ pageKey, title, description }: PageGuideProps) {
       >
         <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900/50 rounded-lg p-4 relative">
           <button
-            onClick={() => {
-              dismiss(pageKey);
-              setIsVisible(false);
-            }}
+            onClick={() => dismiss(pageKey)}
             className="absolute top-2 right-2 text-emerald-600/70 dark:text-emerald-400/70 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-            aria-label="Dismiss guide"
+            aria-label={t("dismissGuide")}
           >
             <X size={18} />
           </button>
@@ -61,6 +54,7 @@ export function PageGuide({ pageKey, title, description }: PageGuideProps) {
           </div>
         </div>
       </motion.div>
+      )}
     </AnimatePresence>
   );
 }

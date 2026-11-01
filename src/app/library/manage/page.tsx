@@ -1,13 +1,14 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
+import { Loading } from "@/components/ui/Loading";
 import { useTranslation } from "react-i18next";
 import { useRouter, useSearchParams } from "next/navigation";
 import { db } from "@/lib/db";
 import { useLiveQuery } from "dexie-react-hooks";
 import { ArrowLeft, Save, Trash2 } from "lucide-react";
 import { Dua, LanguageCode } from "@/types";
-import { v4 as uuidv4 } from "uuid";
+
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 
 function ManageLibraryContent() {
@@ -75,12 +76,12 @@ function ManageLibraryContent() {
 
   const handleSave = async () => {
     if (!titleEn) {
-      alert(t("titleRequired") || "Title (English) is required");
+      alert(t("titleRequired"));
       return;
     }
 
     const itemData: Dua = {
-      id: id || uuidv4(),
+      id: id || crypto.randomUUID(),
       category,
       title: {
         en: titleEn,
@@ -111,7 +112,7 @@ function ManageLibraryContent() {
     }
   };
 
-  if (id && existingItem === undefined) return <div>Loading...</div>;
+  if (id && existingItem === undefined) return <Loading />;
 
   const categories: Dua["category"][] = ["dua", "surah", "ayah", "deed"];
 
@@ -162,7 +163,7 @@ function ManageLibraryContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-slate-500 mb-2">
-              {t("title") || "Title"} (English)
+              {t("title") || "Title"} ({t("english")})
             </label>
             <input
               type="text"
@@ -204,7 +205,7 @@ function ManageLibraryContent() {
         {/* 
         <div>
           <label className="block text-sm font-medium text-slate-500 mb-2">
-            {t("transliteration") || "Transliteration"} (Optional)
+            {t("transliteration")} ({t("optional")})
           </label>
           <textarea
             value={transliteration}
@@ -218,7 +219,7 @@ function ManageLibraryContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-slate-500 mb-2">
-              {t("translation") || "Translation"} (English)
+              {t("translation") || "Translation"} ({t("english")})
             </label>
             <textarea
               value={translationEn}
@@ -245,7 +246,7 @@ function ManageLibraryContent() {
           <div>
             <label className="block text-sm font-medium text-slate-500 mb-2">
               {t("description") || "Description"} / {t("virtues") || "Virtues"}{" "}
-              (English)
+              ({t("english")})
             </label>
             <textarea
               value={descriptionEn}
@@ -264,7 +265,7 @@ function ManageLibraryContent() {
                 value={descriptionNative}
                 onChange={(e) => setDescriptionNative(e.target.value)}
                 className="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 min-h-[80px]"
-                placeholder="e.g. Proučiti 100 puta za oprost"
+                placeholder={t("placeholderVirtues")}
               />
             </div>
           )}
@@ -273,14 +274,14 @@ function ManageLibraryContent() {
         {/* Reference */}
         <div>
           <label className="block text-sm font-medium text-slate-500 mb-2">
-            {t("reference") || "Reference"} (Optional)
+            {t("reference")} ({t("optional")})
           </label>
           <input
             type="text"
             value={reference}
             onChange={(e) => setReference(e.target.value)}
             className="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
-            placeholder="e.g. Muslim 123"
+            placeholder={t("placeholderReference")}
           />
         </div>
       </div>
@@ -310,7 +311,7 @@ function ManageLibraryContent() {
 
 export default function ManageLibrary() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <ManageLibraryContent />
     </Suspense>
   );

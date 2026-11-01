@@ -1,5 +1,6 @@
 "use client";
 import { useLiveQuery } from "dexie-react-hooks";
+import { Loading } from "@/components/ui/Loading";
 import { db } from "@/lib/db";
 import Link from "next/link";
 import { Plus, Layers, ChevronRight } from "lucide-react";
@@ -10,7 +11,7 @@ export default function PresetList() {
   const { t, i18n } = useTranslation();
   const presets = useLiveQuery(() => db.presets.orderBy("order").toArray());
 
-  if (!presets) return <div>Loading...</div>;
+  if (!presets) return <Loading />;
 
   return (
     <div className="space-y-6 pb-20">
@@ -51,7 +52,7 @@ export default function PresetList() {
                         preset.title.en}
                   </h3>
                   <p className="text-sm text-slate-500 dark:text-slate-400">
-                    {preset.items.length} {t("items")}
+                    {t("itemCount", { count: preset.items.length })}
                   </p>
                 </div>
                 <ChevronRight className="text-slate-300 group-hover:text-emerald-500 transition-colors" />

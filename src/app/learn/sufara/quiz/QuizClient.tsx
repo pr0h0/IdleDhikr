@@ -98,8 +98,14 @@ export default function QuizClient() {
         const correctParts: WordPart[] = [];
 
         // Consonants pool (no vowels as base)
-        const consonants = pool.filter((l) => l.type !== "vowel");
-        const safePool = consonants.length > 0 ? consonants : pool;
+        // Alif can't carry a short vowel, so it's excluded from syllables.
+        const isSyllableBase = (l: ArabicLetter) =>
+          l.type !== "vowel" && l.id !== "alif";
+        const consonants = pool.filter(isSyllableBase);
+        const safePool =
+          consonants.length > 0
+            ? consonants
+            : ARABIC_LETTERS.filter(isSyllableBase);
 
         for (let k = 0; k < len; k++) {
           const l = safePool[Math.floor(Math.random() * safePool.length)];
@@ -145,13 +151,18 @@ export default function QuizClient() {
         // Standard Single Letter Logic
         const target = pool[Math.floor(Math.random() * pool.length)];
 
-        // Distractors
+        // Distractors: skip letters whose displayed name matches the target's
+        // (e.g. ح and ه are both "Ha"), otherwise two options look correct.
+        const label = (l: ArabicLetter) =>
+          t(`letters.${l.id}.name`, { defaultValue: l.name });
         const distractors: ArabicLetter[] = [];
-        while (distractors.length < 3) {
-          const d = pool[Math.floor(Math.random() * pool.length)]; // From same pool
-          if (d.id !== target.id && !distractors.find((x) => x.id === d.id)) {
+        for (const d of [...pool].sort(() => Math.random() - 0.5)) {
+          if (distractors.length === 3) break;
+          if (
+            label(d) !== label(target) &&
+            !distractors.some((x) => label(x) === label(d))
+          )
             distractors.push(d);
-          }
         }
         const options = [...distractors, target].sort(
           () => Math.random() - 0.5,
@@ -169,7 +180,7 @@ export default function QuizClient() {
     setSelectedOption(null);
     setTextInput("");
     setIsPlaying(true);
-  }, [onlyLearned, includeWriting, progress]);
+  }, [onlyLearned, includeWriting, progress, t]);
 
   const handleAnswer = (val: string) => {
     if (isAnswered) return;
@@ -435,7 +446,7 @@ export default function QuizClient() {
                 {t("submit")}
               </button>
             ) : (
-              <div className="text-center animate-in fade-in slide-in-from-bottom-4">
+              <div className="text-center animate-sheet-in">
                 <div
                   className={`font-bold text-lg mb-2 ${textInput === currentQ.wordTarget?.arabic ? "text-emerald-500" : "text-red-500"}`}
                 >

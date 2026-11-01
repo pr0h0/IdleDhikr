@@ -19,12 +19,15 @@ export default function LearnPage() {
 
   const resetProgress = async () => {
     if (confirm(t("confirmResetProgress"))) {
-      await db.learningProgress.clear();
+      // Table is shared with Esmaulhusna progress; only clear letters.
+      await db.learningProgress.bulkDelete(ARABIC_LETTERS.map((l) => l.id));
     }
   };
 
   const totalLetters = ARABIC_LETTERS.length;
-  const learnedCount = progress?.filter((p) => p.isLearned).length || 0;
+  const learnedCount = ARABIC_LETTERS.filter(
+    (l) => getLetterProgress(l.id)?.isLearned,
+  ).length;
   const progressPercentage = (learnedCount / totalLetters) * 100;
 
   return (

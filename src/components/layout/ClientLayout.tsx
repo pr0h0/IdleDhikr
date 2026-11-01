@@ -18,12 +18,9 @@ export default function ClientLayout({
     // eslint-disable-next-line
     setMounted(true);
 
-    // Sync Theme
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    // Sync Theme + document language
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.lang = language;
 
     // Sync Language
     if (i18n.language !== language) {
@@ -45,8 +42,10 @@ export default function ClientLayout({
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-20">
-      <main className="container mx-auto px-4 py-4 max-w-lg">{children}</main>
+    <div className="min-h-dvh pb-28">
+      <main className="mx-auto max-w-lg px-4 pt-[max(1.25rem,env(safe-area-inset-top))]">
+        {children}
+      </main>
       <BottomNav />
     </div>
   );

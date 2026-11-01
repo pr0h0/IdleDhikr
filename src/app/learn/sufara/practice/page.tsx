@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { Loading } from "@/components/ui/Loading";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/lib/db";
 import { ARABIC_LETTERS, ARABIC_VOWELS } from "@/lib/arabicData";
@@ -33,7 +34,6 @@ export default function PracticePage() {
     trans: string;
     parts: WordPart[];
   } | null>(null);
-  const [showTrans, setShowTrans] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [shuffledParts, setShuffledParts] = useState<WordPart[]>([]);
   const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(
@@ -42,7 +42,10 @@ export default function PracticePage() {
 
   const generateWord = useCallback(() => {
     // 1. Filter letters (Consonants only)
-    const consonants = ARABIC_LETTERS.filter((l) => l.type !== "vowel");
+    // Alif can't carry a short vowel, so it's excluded from generated syllables.
+    const consonants = ARABIC_LETTERS.filter(
+      (l) => l.type !== "vowel" && l.id !== "alif",
+    );
     let pool = consonants;
 
     if (onlyLearned && progress) {
@@ -103,7 +106,6 @@ export default function PracticePage() {
     setCurrentWord({ arabic, trans, parts: wordParts });
 
     // Mode specific reset
-    setShowTrans(false);
     setUserInput("");
     setFeedback(null);
     if (mode === "reorder") {
@@ -132,7 +134,13 @@ export default function PracticePage() {
 
     if (mode === "write") {
       // Normalize
-      const normalize = (s: string) => s.toLowerCase().replace(/-/g, "").trim();
+      // Accept plain ASCII for ḥ/ṣ/ḍ/ṭ/ẓ and any apostrophe for ʿ (ayn).
+      const normalize = (s: string) =>
+        s
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .replace(/[-\sʿʾ'`’]/g, "");
       if (normalize(userInput) === normalize(currentWord.trans)) {
         setFeedback("correct");
       } else {
@@ -149,7 +157,7 @@ export default function PracticePage() {
     }
   };
 
-  if (!currentWord) return <div className="p-10 text-center">Loading...</div>;
+  if (!currentWord) return <Loading />;
 
   return (
     <div className="pb-32 space-y-6">
@@ -206,7 +214,7 @@ export default function PracticePage() {
               </h2>
 
               {feedback === "incorrect" && currentWord && (
-                <div className="mb-6 text-center animate-in fade-in slide-in-from-bottom-2">
+                <div className="mb-6 text-center animate-sheet-in">
                   <p className="text-slate-500 text-sm font-bold uppercase tracking-wider mb-1">
                     {t("correctAnswer") || "Correct Answer"}
                   </p>
@@ -235,15 +243,6 @@ export default function PracticePage() {
               {currentWord.arabic}
             </div>
 
-            {/* Transcription Display Removed
-            {showTrans ? (
-              <div className="text-2xl font-bold text-slate-500 mb-8 tracking-widest">
-                {currentWord.trans}
-              </div>
-            ) : (
-              <div className="h-8 mb-8" /> // Spacer
-            )}
-            */}
             <div className="h-4 mb-4" />
 
             <div className="flex gap-4">
@@ -253,14 +252,6 @@ export default function PracticePage() {
               >
                 <Volume2 size={32} />
               </button>
-              {/* Eye Button Removed
-              <button
-                onClick={() => setShowTrans(!showTrans)}
-                className="p-4 rounded-full bg-slate-50 dark:bg-slate-700 text-slate-600 hover:scale-110 transition-transform"
-              >
-                {showTrans ? <EyeOff size={32} /> : <Eye size={32} />}
-              </button>
-              */}
               <button
                 onClick={generateWord}
                 className="p-4 rounded-full bg-slate-50 dark:bg-slate-700 text-slate-600 hover:scale-110 transition-transform"
@@ -288,7 +279,7 @@ export default function PracticePage() {
               type="text"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
-              placeholder="e.g. ba-ti"
+              placeholder={t("transcriptionPlaceholder")}
               className="w-full max-w-xs text-center text-xl p-3 border-b-2 border-slate-200 dark:border-slate-700 bg-transparent focus:border-emerald-500 outline-none mb-6"
             />
 

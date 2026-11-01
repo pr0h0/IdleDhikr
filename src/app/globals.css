@@ -2,33 +2,132 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens. Every page uses Tailwind's slate/emerald scales, so re-tuning
+ * those scales here re-skins the whole app consistently:
+ * slate   -> green-tinted "ink" neutrals (warm paper in light, deep night in dark)
+ * emerald -> slightly deeper jade
+ * amber   -> used as the "gold" accent for completions
+ */
+@theme {
+  --color-slate-50: oklch(0.982 0.004 150);
+  --color-slate-100: oklch(0.955 0.007 155);
+  --color-slate-200: oklch(0.91 0.01 158);
+  --color-slate-300: oklch(0.83 0.014 160);
+  --color-slate-400: oklch(0.67 0.018 162);
+  --color-slate-500: oklch(0.54 0.02 165);
+  --color-slate-600: oklch(0.44 0.02 167);
+  --color-slate-700: oklch(0.34 0.02 170);
+  --color-slate-800: oklch(0.255 0.018 172);
+  --color-slate-900: oklch(0.2 0.016 175);
+  --color-slate-950: oklch(0.155 0.014 178);
+
+  --color-emerald-50: oklch(0.975 0.022 166);
+  --color-emerald-100: oklch(0.945 0.05 164);
+  --color-emerald-200: oklch(0.89 0.09 164);
+  --color-emerald-300: oklch(0.83 0.13 163);
+  --color-emerald-400: oklch(0.76 0.15 163);
+  --color-emerald-500: oklch(0.67 0.15 164);
+  --color-emerald-600: oklch(0.57 0.13 165);
+  --color-emerald-700: oklch(0.48 0.11 166);
+  --color-emerald-800: oklch(0.4 0.09 167);
+  --color-emerald-900: oklch(0.34 0.07 168);
+  --color-emerald-950: oklch(0.24 0.05 170);
+
+  --animate-fade-in: fade-in 0.2s ease-out;
+  --animate-sheet-in: sheet-in 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes sheet-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem) scale(0.98);
+    }
+  }
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.375rem;
+  --radius-3xl: 1.75rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-amiri: var(--font-amiri);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-amiri: var(--font-amiri-src), "Amiri", serif;
 }
 
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@utility card {
+  @apply rounded-2xl border border-slate-200/70 bg-white/80 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_8px_24px_-12px_rgb(0_0_0/0.08)] backdrop-blur-sm dark:border-white/[0.06] dark:bg-slate-900/70 dark:shadow-none;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-slate-50 font-sans text-slate-900 dark:bg-slate-950 dark:text-slate-100;
+    /* Soft jade glow + faint eight-point star lattice. */
+    background-image:
+      radial-gradient(60rem 30rem at 50% -10%, oklch(0.67 0.15 164 / 0.12), transparent 70%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 14l4 10 10 4-10 4-4 10-4-10-10-4 10-4z' fill='none' stroke='%2310b981' stroke-opacity='.035'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+  }
+
+  .font-amiri {
+    line-height: 1.9;
+  }
+
+  button,
+  a,
+  [role="button"] {
+    @apply transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-150;
+  }
+
+  button:not(:disabled),
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-emerald-500;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply rounded-xl;
+  }
+
+  ::selection {
+    @apply bg-emerald-500/25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

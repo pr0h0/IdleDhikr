@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Amiri } from "next/font/google";
 import "./globals.css";
 
@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 const amiri = Amiri({
-  variable: "--font-amiri",
+  variable: "--font-amiri-src",
   weight: ["400", "700"],
   subsets: ["arabic"],
 });
@@ -21,6 +21,7 @@ const amiri = Amiri({
 export const metadata: Metadata = {
   title: "IdleDhikr",
   description: "Your personal Dhikr companion",
+  icons: { icon: "/icon.svg", apple: "/icon.svg" },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -29,8 +30,12 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = {
-  themeColor: "#10b981",
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f6f8f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1210" },
+  ],
+  viewportFit: "cover",
 };
 
 import ClientLayout from "@/components/layout/ClientLayout";
@@ -41,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${amiri.variable} antialiased`}
       >

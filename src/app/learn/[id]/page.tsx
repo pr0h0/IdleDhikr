@@ -25,7 +25,7 @@ function HighlightedWord({
   let currentGrapheme = "";
 
   // Arabic letters that DO NOT connect to the following letter (Left side)
-  const NON_CONNECTORS = /[اأإآدذرزوؤة]/;
+  const NON_CONNECTORS = /[اأإآٱدذرزوؤةء]/;
 
   for (const char of word) {
     // Check for Arabic diacritics/marks + Tatawil usually attached to prev

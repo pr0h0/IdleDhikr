@@ -35,9 +35,9 @@ export const TAJWEED_RULES: TajweedRule[] = [
     },
     description: {
       en: "The lexical meaning of Makhārij is 'exit points'. It refers to the specific parts of the mouth, throat, or nose from where the sound of a letter originates. There are 5 main areas (Jawf, Halq, Lisan, Shafatan, Khayshum) containing 17 specific articulation points.",
-      bs: "Jezičko značenje 'Mekhraidž' je 'mjesta izlaska'. Odnosi se na specifične dijelove usta, grla ili nosa odakle potiče zvuk harfa (slova). Postoji 5 glavnih oblasti (Džauf, Halk, Lisan, Šefetan, Hajšum) koje sadrže 17 specifičnih tačaka izgovora.",
+      bs: "Jezičko značenje riječi 'meharidž' (jednina: mahredž) je 'mjesta izlaska'. Odnosi se na specifične dijelove usta, grla ili nosa odakle potiče zvuk harfa (slova). Postoji 5 glavnih oblasti (Džauf, Halk, Lisan, Šefetan, Hajšum) koje sadrže 17 specifičnih tačaka izgovora.",
     },
-    letters: ["Alif", "Ba", "Ta", "Tha", "All Arabic Letters"],
+    letters: ["الجوف", "الحلق", "اللسان", "الشفتان", "الخيشوم"],
     examples: [
       {
         arabic: "ا",
@@ -68,7 +68,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
       {
         question: {
           en: "How many specific points of articulation (Makhārij) are there in total?",
-          bs: "Koliko ukupno ima specifičnih mjesta izgovora (Mekhraidža)?",
+          bs: "Koliko ukupno ima specifičnih mjesta izgovora (meharidža)?",
         },
         options: [
           { en: "5", bs: "5" },
@@ -102,9 +102,9 @@ export const TAJWEED_RULES: TajweedRule[] = [
     },
     description: {
       en: "Sifāt refers to the characteristics that differentiate letters sharing the same articulation point (Makhraj). They deal with how the sound is produced, such as whispering (Hams), loudness (Jahr), elevation (Isti'la), or echoing (Qalqalah).",
-      bs: "Sifati se odnose na osobine koje razlikuju harfove koji dijele isto mjesto izgovora (Mekhradž). Bave se načinom na koji se zvuk proizvodi, kao što su šaputanje (Hems), glasnoća (Džehr), krupnoća (Isti'la) ili odskakanje (Kalkala).",
+      bs: "Sifati se odnose na osobine koje razlikuju harfove koji dijele isto mjesto izgovora (mahredž). Bave se načinom na koji se zvuk proizvodi, kao što su šaputanje (Hems), glasnoća (Džehr), krupnoća (Isti'la) ili odskakanje (Kalkala).",
     },
-    letters: ["All Arabic Letters"],
+    letters: [],
     examples: [
       {
         arabic: "ت",
@@ -193,17 +193,17 @@ export const TAJWEED_RULES: TajweedRule[] = [
       bs: "Idgam (Uklapanje)",
     },
     description: {
-      en: "Rule: If Nūn Sākinah or Tanwīn is followed by one of the letters in 'YARMALOON' (ي ر م ل و ن), the Nūn merges into the next letter. It is divided into Idgham with Ghunnah (Yanmu) and Idgham without Ghunnah (Lam, Ra).",
-      bs: "Pravilo: Ako poslije Nuna sakina ili Tenvina dođe jedan od harfova u 'JARMELUN' (ي, ر, م, ل, و, ن), Nun se uklapa u sljedeći harf. Dijeli se na Idgam sa Gunnom (Jenmu) i Idgam bez Gunne (Lam, Ra).",
+      en: "Rule: If Nūn Sākinah or Tanwīn is followed by one of the letters in 'YARMALOON' (ي ر م ل و ن), the Nūn merges into the next letter. It is divided into Idgham with Ghunnah (ي ن م و – 'Yanmū') and Idgham without Ghunnah (ل ر). Idgham only happens across two words; inside one word (e.g. دُنْيَا، صِنْوَانٌ، قِنْوَانٌ، بُنْيَانٌ) the Nūn is read clearly (Iẓhār Muṭlaq).",
+      bs: "Pravilo: Ako poslije Nuna sakina ili Tenvina dođe jedan od harfova u 'JARMELUN' (ي, ر, م, ل, و, ن), Nun se uklapa u sljedeći harf. Dijeli se na Idgam sa Gunnom (Jenmu) i Idgam bez Gunne (ل ر). Idgam se dešava samo između dvije riječi; unutar jedne riječi (npr. دُنْيَا، صِنْوَانٌ، قِنْوَانٌ، بُنْيَانٌ) Nun se izgovara jasno (Izhar mutlak).",
     },
     letters: ["ي", "ر", "م", "ل", "و", "ن"],
     examples: [
       {
-        arabic: "مَن يَقُولُ",
+        arabic: "مَن يَّقُولُ",
         transliteration: "May-yaqūlu",
         explanation: {
           en: "Idgham with Ghunnah. Nun dissolves into Ya.",
-          bs: "Idgam sa Gunnom. Nun se pretvara u Ja.",
+          bs: "Idgam sa Gunnom. Nun se uklapa u Ja.",
         },
       },
       {
@@ -249,7 +249,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
         transliteration: "Mim-ba'di",
         explanation: {
           en: "Nun is pronounced as a light Mim because of Ba.",
-          bs: "Nun se izgovara kao blago Mim zbog harfa Ba.",
+          bs: "Nun se izgovara kao Mim (uz Gunnu) zbog harfa Ba.",
         },
       },
       {
@@ -285,8 +285,8 @@ export const TAJWEED_RULES: TajweedRule[] = [
       bs: "Ihfa (Skrivanje)",
     },
     description: {
-      en: "Rule: If Nūn Sākinah or Tanwīn is followed by any of the remaining 15 letters (not Throat, Yarmaloon, or Ba), the Nūn is concealed. The tongue does not touch the palate; instead, a sound between Izhar and Idgham is produced with Ghunnah.",
-      bs: "Pravilo: Ako poslije Nuna sakina ili Tenvina dođe bilo koji od preostalih 15 harfova (koji nisu Grleni, Jarmelun, ili Ba), Nun se skriva. Jezik ne dodiruje nepce; umjesto toga proizvodi se zvuk između Izhara i Idgama uz Gunnu.",
+      en: "Rule: If Nūn Sākinah or Tanwīn is followed by any of the remaining 15 letters (not Throat, Yarmaloon, or Ba), the Nūn is concealed: the tongue does not press on the Nūn's articulation point but prepares for the next letter, producing a sound between Iẓhār and Idghām with Ghunnah (2 counts).",
+      bs: "Pravilo: Ako poslije Nuna sakina ili Tenvina dođe bilo koji od preostalih 15 harfova (koji nisu Grleni, Jarmelun, ili Ba), Nun se skriva: jezik se ne oslanja na mahredž Nuna, nego se priprema za sljedeći harf, pa nastaje zvuk između Izhara i Idgama uz Gunnu (2 dužine).",
     },
     letters: [
       "ت",
@@ -367,8 +367,8 @@ export const TAJWEED_RULES: TajweedRule[] = [
         arabic: "هُمْ فِيهَا",
         transliteration: "Hum Fīhā",
         explanation: {
-          en: "Clear Mim before Fa (Be careful not to hide logic).",
-          bs: "Jasan Mim ispred Fa (Pazi da ga ne sakriješ).",
+          en: "Clear Mim before Fa (be especially careful not to hide it before Fa and Waw).",
+          bs: "Jasan Mim ispred Fa (posebno pazi da ga ne sakriješ ispred Fa i Vava).",
         },
       },
     ],
@@ -396,14 +396,14 @@ export const TAJWEED_RULES: TajweedRule[] = [
       bs: "Idgam Šefevi (Usneni Idgam)",
     },
     description: {
-      en: "Rule: If Mīm Sākinah is followed by another Mīm (م), they merge into one Mīm Mushaddadah (with Shaddah) and Ghunnah is held for 2 counts.",
-      bs: "Pravilo: Ako poslije Mima sakina dođe drugi Mim (m), oni se stapaju u jedan Mim Mušeddede (sa Šeddom) i Gunna se drži 2 dužine.",
+      en: "Rule: If Mīm Sākinah is followed by another Mīm (م), they merge into one Mīm Mushaddadah (with Shaddah) and Ghunnah is held for 2 counts. Also called Idghām Mithlayn Ṣaghīr.",
+      bs: "Pravilo: Ako poslije Mima sakina dođe drugi Mim (m), oni se stapaju u jedan Mim Mušeddede (sa Šeddom) i Gunna se drži 2 dužine. Naziva se i Idgam mislejn sagir.",
     },
     letters: ["م"],
     examples: [
       {
-        arabic: "لَهُم مَّا",
-        transliteration: "Lahum-mā",
+        arabic: "وَلَهُم مَّا يَشْتَهُونَ",
+        transliteration: "Wa lahum-mā yashtahūn",
         explanation: {
           en: "Merge the two Mims with Ghunnah.",
           bs: "Spoji dva Mima sa Gunnom.",
@@ -479,7 +479,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
     examples: [
       {
         arabic: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",
-        transliteration: "Al-Falaq",
+        transliteration: "Qul a'ūdhu bi-rabbi-l-falaq",
         explanation: {
           en: "Strong bounce on Qaf when stopping (Kubra).",
           bs: "Snažan odskok na Kafu prilikom stajanja (Kubra).",
@@ -502,7 +502,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
         },
         options: [
           { en: "Yarmaloon", bs: "Jarmelun" },
-          { en: "Qutb Jad", bs: "Kutbu Džedjin" },
+          { en: "Quṭbu Jad (قُطْبُ جَدٍّ)", bs: "Kutbu džeddin (قُطْبُ جَدٍّ)" },
           { en: "Khasaf", bs: "Hasef" },
           { en: "Hams", bs: "Hems" },
         ],
@@ -543,16 +543,16 @@ export const TAJWEED_RULES: TajweedRule[] = [
     quizQuestions: [
       {
         question: {
-          en: "Where does the sound of Ghunnah come from?",
-          bs: "Odakle dolazi zvuk Gunne?",
+          en: "How long is the Ghunnah of a Nūn or Mīm with Shaddah held?",
+          bs: "Koliko se drži Gunna Nuna ili Mima sa Šeddom?",
         },
         options: [
-          { en: "Throat", bs: "Grlo" },
-          { en: "Lips", bs: "Usne" },
-          { en: "Nose (Khayshum)", bs: "Nos (Hajšum)" },
-          { en: "Chest", bs: "Prsa" },
+          { en: "No Ghunnah", bs: "Bez Gunne" },
+          { en: "2 counts", bs: "2 dužine" },
+          { en: "4 counts", bs: "4 dužine" },
+          { en: "6 counts", bs: "6 dužina" },
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
       },
     ],
   },
@@ -561,11 +561,11 @@ export const TAJWEED_RULES: TajweedRule[] = [
     title: "Madd Ṭabīʿī",
     translation: {
       en: "Natural Elongation",
-      bs: "Madd Tabii (Prirodna dužina)",
+      bs: "Medd tabi'i (Prirodna dužina)",
     },
     description: {
-      en: "The natural elongation of a vowel for 2 counts. Occurs when Alif is preceded by Fatha, Waw preceded by Damma, or Ya preceded by Kasra, and NOT followed by Hamzah or Sukun.",
-      bs: "Prirodno produženje vokala za 2 dužine. Dešava se kada je Alif ispred Fethe, Vav ispred Damme, ili Ja ispred Kesre, a da poslije njih ne dolazi Hemze ili Sukun.",
+      en: "The natural elongation of a vowel for 2 counts. Occurs when Alif is preceded by Fatha, Waw Sākinah by Damma, or Yā Sākinah by Kasra, and NOT followed by Hamzah or Sukun.",
+      bs: "Prirodno produženje vokala za 2 dužine. Dešava se kada Alifu prethodi Fetha, sakin Vavu Damma, ili sakin Ji Kesra, a poslije njih ne dolazi Hemze ili Sukun.",
     },
     letters: ["ا", "و", "ي"],
     examples: [
@@ -590,7 +590,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
       {
         question: {
           en: "How long is Madd Tabii held?",
-          bs: "Koliko se dugo drži Madd Tabii?",
+          bs: "Koliko se dugo drži Medd tabi'i?",
         },
         options: [
           { en: "1 count", bs: "1 dužinu" },
@@ -607,11 +607,11 @@ export const TAJWEED_RULES: TajweedRule[] = [
     title: "Madd Muttasil",
     translation: {
       en: "Connected Elongation",
-      bs: "Madd Muttasil (Spojena dužina)",
+      bs: "Medd muttasil (Spojena dužina)",
     },
     description: {
       en: "Occurs when a Madd letter is followed by a Hamzah (ء) in the SAME word. It is mandatory (Wajib) to stretch it for 4 or 5 counts.",
-      bs: "Dešava se kada poslije harfa Madda dođe Hemze (ء) u ISTOJ riječi. Obavezno je (Vadžib) produžiti ga 4 ili 5 dužina.",
+      bs: "Dešava se kada poslije harfa medda dođe Hemze (ء) u ISTOJ riječi. Obavezno je (Vadžib) produžiti ga 4 ili 5 dužina.",
     },
     letters: ["ا", "و", "ي"],
     examples: [
@@ -620,7 +620,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
         transliteration: "Jā'a",
         explanation: {
           en: "Madd and Hamzah in one word. 4-5 counts.",
-          bs: "Madd i Hemze u jednoj riječi. 4-5 dužina.",
+          bs: "Medd i Hemze u jednoj riječi. 4-5 dužina.",
         },
       },
       {
@@ -628,7 +628,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
         transliteration: "Sū'a",
         explanation: {
           en: "Waw Madd followed by Hamzah. 4-5 counts.",
-          bs: "Vav Madd praćen Hemzetom. 4-5 dužina.",
+          bs: "Vav medd praćen Hemzetom. 4-5 dužina.",
         },
       },
     ],
@@ -645,7 +645,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
           },
           {
             en: "Madd and Hamzah are in the same word",
-            bs: "Madd i Hemze su u istoj riječi",
+            bs: "Medd i Hemze su u istoj riječi",
           },
           { en: "It is short", bs: "Kratak je" },
           { en: "It connects two sentences", bs: "Spaja dvije rečenice" },
@@ -659,11 +659,11 @@ export const TAJWEED_RULES: TajweedRule[] = [
     title: "Madd Munfasil",
     translation: {
       en: "Separated Elongation",
-      bs: "Madd Munfasil (Rastavljena dužina)",
+      bs: "Medd munfasil (Rastavljena dužina)",
     },
     description: {
-      en: "Occurs when a Madd letter is at the end of a word, and Hamzah is at the beginning of the NEXT word. It is allowed (Jaiz) to stretch 4-5 counts (Hafs) or 2 counts.",
-      bs: "Dešava se kada je harf Madda na kraju jedne riječi, a Hemze na početku SLJEDEĆE riječi. Dozvoljeno je (Džaiz) produžiti 4-5 dužina (Hafs) ili 2 dužine.",
+      en: "Occurs when a Madd letter is at the end of a word, and Hamzah is at the beginning of the NEXT word. It is called permissible (Jāʾiz). In Ḥafṣ via ash-Shāṭibiyyah it is stretched 4 or 5 counts (2 counts is allowed only via the Ṭayyibah route).",
+      bs: "Dešava se kada je harf Madda na kraju jedne riječi, a Hemze na početku SLJEDEĆE riječi. Naziva se dozvoljenim (Džaiz). Kod Hafsa putem Šatibijje uči se 4 ili 5 dužina (2 dužine su dozvoljene samo putem Tajjibe).",
     },
     letters: ["ا", "و", "ي"],
     examples: [
@@ -672,7 +672,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
         transliteration: "Innā A'ṭaynāka",
         explanation: {
           en: "Madd in 'Inna', Hamzah in 'A'tayna'.",
-          bs: "Madd u 'Inna', Hemze u 'E'tajna'.",
+          bs: "Medd u 'Inna', Hemze u 'E'tajna'.",
         },
       },
     ],
@@ -680,7 +680,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
       {
         question: {
           en: "In Madd Munfasil, where is the Hamzah?",
-          bs: "Kod Madd Munfasila, gdje se nalazi Hemze?",
+          bs: "Kod Medd munfasila, gdje se nalazi Hemze?",
         },
         options: [
           { en: "Same word", bs: "U istoj riječi" },
@@ -697,11 +697,11 @@ export const TAJWEED_RULES: TajweedRule[] = [
     title: "Madd Lāzim",
     translation: {
       en: "Compulsory Elongation",
-      bs: "Madd Lazim (Obavezna dužina)",
+      bs: "Medd lazim (Obavezna dužina)",
     },
     description: {
       en: "Occurs when a Madd letter is followed by a completely original permanent Sukun or Shaddah (which imply Sukun). It must be stretched for 6 counts.",
-      bs: "Dešava se kada poslije harfa Madda dođe originalni trajni Sukun ili Šedda (koja podrazumijeva Sukun). Mora se produžiti 6 dužina.",
+      bs: "Dešava se kada poslije harfa medda dođe originalni trajni Sukun ili Šedda (koja podrazumijeva Sukun). Mora se produžiti 6 dužina.",
     },
     letters: ["ا", "و", "ي"],
     examples: [
@@ -726,7 +726,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
       {
         question: {
           en: "What is the duration of Madd Lazim?",
-          bs: "Koliko traje Madd Lazim?",
+          bs: "Koliko traje Medd lazim?",
         },
         options: [
           { en: "2 counts", bs: "2 dužine" },
@@ -743,7 +743,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
     title: "Madd ʿĀriḍ li-s-Sukūn",
     translation: {
       en: "Temporary Elongation for Stop",
-      bs: "Madd Arid lis-Sukun",
+      bs: "Medd 'arid lis-sukun (Privremena dužina zbog stajanja)",
     },
     description: {
       en: "Occurs when stopping on a word creates a temporary Sukun on the last letter, preceded by a Madd letter. Can be stretched 2, 4, or 6 counts.",
@@ -764,7 +764,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
       {
         question: {
           en: "When does Madd Arid occur?",
-          bs: "Kada nastaje Madd Arid?",
+          bs: "Kada nastaje Medd arid?",
         },
         options: [
           { en: "Only when starting", bs: "Samo kod početka" },
@@ -784,8 +784,8 @@ export const TAJWEED_RULES: TajweedRule[] = [
       bs: "Ahkamul Ra (Pravila za Ra)",
     },
     description: {
-      en: "The letter Ra (ر) can be Tafkhim (Heavy) or Tarqiq (Light). It is HEAVY if it has Fatha or Damma. It is LIGHT if it has Kasra.",
-      bs: "Harf Ra (ر) može biti Tefhim (Krupno) ili Tarkik (Tanko). KRUPNO je ako ima Fethu ili Dammu. TANKO je ako ima Kesru.",
+      en: "The letter Ra (ر) can be Tafkhim (Heavy) or Tarqiq (Light). It is HEAVY if it has Fatha or Damma, or if it is Sākin after Fatha or Damma. It is LIGHT if it has Kasra, or if it is Sākin after an original Kasra (not followed by a heavy letter in the same word), or Sākin after a Yā Sākinah when stopping.",
+      bs: "Harf Ra (ر) može biti Tefhim (Krupno) ili Tarkik (Tanko). KRUPNO je ako ima Fethu ili Dammu, ili ako je sakin poslije Fethe ili Damme. TANKO je ako ima Kesru, ili ako je sakin poslije izvorne Kesre (a iza njega u istoj riječi nije krupni harf), ili sakin poslije sakin Ja kod stajanja.",
     },
     letters: ["ر"],
     examples: [
@@ -798,7 +798,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
         },
       },
       {
-        arabic: "رِزْقاً",
+        arabic: "رِزْقًا",
         transliteration: "Rizqan",
         explanation: {
           en: "Light (Kasra).",
@@ -836,7 +836,7 @@ export const TAJWEED_RULES: TajweedRule[] = [
     letters: ["ل"],
     examples: [
       {
-        arabic: "مِنَ اللهِ",
+        arabic: "مِنَ اللَّهِ",
         transliteration: "Min-Allāh",
         explanation: {
           en: "Preceded by Fatha -> Heavy.",
@@ -844,11 +844,19 @@ export const TAJWEED_RULES: TajweedRule[] = [
         },
       },
       {
-        arabic: "بِسْمِ اللهِ",
+        arabic: "بِسْمِ اللَّهِ",
         transliteration: "Bismi-llāh",
         explanation: {
           en: "Preceded by Kasra -> Light.",
           bs: "Prethodi Kesra -> Tanko.",
+        },
+      },
+      {
+        arabic: "رَسُولُ اللَّهِ",
+        transliteration: "Rasūlu-llāh",
+        explanation: {
+          en: "Preceded by Damma -> Heavy.",
+          bs: "Prethodi Damma -> Krupno.",
         },
       },
     ],
@@ -863,6 +871,111 @@ export const TAJWEED_RULES: TajweedRule[] = [
           { en: "Heavy (Thick)", bs: "Krupno (Debelo)" },
           { en: "Silent", bs: "Nečujno" },
           { en: "With Ghunnah", bs: "Sa Gunnom" },
+        ],
+        correctAnswer: 1,
+      },
+    ],
+  },
+  {
+    id: "lam-tarif",
+    title: "Lām Qamariyyah & Shamsiyyah",
+    translation: {
+      en: "Moon and Sun Lām (of 'Al-')",
+      bs: "Lam kamerijje i šemsijje (Mjesečevo i Sunčevo Lam)",
+    },
+    description: {
+      en: "The Lām of the definite article (ال) is read clearly (Iẓhār, Lām Qamariyyah) before the 14 letters of 'ابْغِ حَجَّكَ وَخَفْ عَقِيمَهُ'. Before the other 14 letters (Shamsiyyah: ت ث د ذ ر ز س ش ص ض ط ظ ل ن) it is not pronounced and merges into the next letter, which takes a Shaddah (Idghām).",
+      bs: "Lam određenog člana (ال) izgovara se jasno (Izhar, Lam kamerijje) ispred 14 harfova izraza 'ابْغِ حَجَّكَ وَخَفْ عَقِيمَهُ'. Ispred ostalih 14 harfova (šemsijje: ت ث د ذ ر ز س ش ص ض ط ظ ل ن) ne izgovara se, nego se uklapa u sljedeći harf koji dobija Šeddu (Idgam).",
+    },
+    letters: ["ت", "ث", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ل", "ن"],
+    examples: [
+      {
+        arabic: "الْحَمْدُ لِلَّهِ",
+        transliteration: "Al-ḥamdu lillāh",
+        explanation: {
+          en: "Lām Qamariyyah before Ḥa: Lām has Sukun and is pronounced.",
+          bs: "Lam kamerijje ispred Ha: Lam ima Sukun i izgovara se.",
+        },
+      },
+      {
+        arabic: "الشَّمْسُ",
+        transliteration: "Ash-shams",
+        explanation: {
+          en: "Lām Shamsiyyah before Shin: Lām is silent, Shin is doubled.",
+          bs: "Lam šemsijje ispred Šina: Lam se ne izgovara, Šin se udvostručuje.",
+        },
+      },
+    ],
+    quizQuestions: [
+      {
+        question: {
+          en: "In 'الرَّحْمَٰنِ', how is the Lām of 'Al-' read?",
+          bs: "Kako se uči Lam u 'الرَّحْمَٰنِ'?",
+        },
+        options: [
+          { en: "Pronounced clearly", bs: "Izgovara se jasno" },
+          { en: "Silent, merged into Ra", bs: "Ne izgovara se, uklapa se u Ra" },
+          { en: "With Qalqalah", bs: "Sa Kalkalom" },
+          { en: "Converted to Mim", bs: "Pretvara se u Mim" },
+        ],
+        correctAnswer: 1,
+      },
+      {
+        question: {
+          en: "Which of these is a Moon (Qamariyyah) letter?",
+          bs: "Koji od ovih harfova je kamerijje?",
+        },
+        options: [
+          { en: "Sin (س)", bs: "Sin (س)" },
+          { en: "Nun (ن)", bs: "Nun (ن)" },
+          { en: "Qaf (ق)", bs: "Kaf (ق)" },
+          { en: "Dal (د)", bs: "Dal (د)" },
+        ],
+        correctAnswer: 2,
+      },
+    ],
+  },
+  {
+    id: "tafkhim",
+    title: "Tafkhīm & Tarqīq",
+    translation: {
+      en: "Heavy and Light Letters",
+      bs: "Tefhim i terkik (Krupni i tanki harfovi)",
+    },
+    description: {
+      en: "The 7 letters of Isti'lāʾ, collected in 'خُصَّ ضَغْطٍ قِظْ', are always pronounced heavy (Tafkhīm) by raising the back of the tongue. All other letters are light (Tarqīq), except Rāʾ, the Lām of 'Allah', and Alif after a heavy letter, which can be either.",
+      bs: "7 harfova isti'laa, sabranih u izrazu 'خُصَّ ضَغْطٍ قِظْ', uvijek se izgovaraju krupno (tefhim) podizanjem zadnjeg dijela jezika. Svi ostali harfovi su tanki (terkik), osim Ra, Lama u imenu Allah i Elifa poslije krupnog harfa, koji mogu biti i krupni i tanki.",
+    },
+    letters: ["خ", "ص", "ض", "غ", "ط", "ق", "ظ"],
+    examples: [
+      {
+        arabic: "قَالَ",
+        transliteration: "Qāla",
+        explanation: {
+          en: "Heavy Qaf, and the Alif after it is heavy too.",
+          bs: "Krupan Kaf, a i Elif poslije njega je krupan.",
+        },
+      },
+      {
+        arabic: "الصِّرَاطَ",
+        transliteration: "Aṣ-ṣirāṭa",
+        explanation: {
+          en: "Ṣad and Ṭa are heavy letters.",
+          bs: "Sad i Ta (ط) su krupni harfovi.",
+        },
+      },
+    ],
+    quizQuestions: [
+      {
+        question: {
+          en: "Which phrase collects the always-heavy letters?",
+          bs: "Koji izraz sabira harfove koji su uvijek krupni?",
+        },
+        options: [
+          { en: "Yarmalūn (يرملون)", bs: "Jarmelun (يرملون)" },
+          { en: "Khuṣṣa ḍaghṭin qiẓ (خص ضغط قظ)", bs: "Hussa dagtin kiz (خص ضغط قظ)" },
+          { en: "Quṭbu Jad (قطب جد)", bs: "Kutbu džeddin (قطب جد)" },
+          { en: "Yanmū (ينمو)", bs: "Jenmu (ينمو)" },
         ],
         correctAnswer: 1,
       },

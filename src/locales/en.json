@@ -3,6 +3,7 @@
   "presets": "Presets",
   "newPreset": "New Preset",
   "newDhikr": "New Dhikr",
+  "editDhikr": "Edit Dhikr",
   "content": "Content",
   "library": "Library",
   "settings": "Settings",
@@ -18,23 +19,32 @@
   "exportData": "Export Backup",
   "importData": "Import Backup",
   "exportLibrary": "Export Library Only",
-  "exportLibrarySubtitle": "JSON, No History",
+  "exportLibrarySubtitle": "JSON, without history",
   "exportFull": "Export Full Backup",
-  "exportFullSubtitle": "JSON, Includes History",
-  "importMergeSubtitle": "Keep existing data",
-  "importOverwriteSubtitle": "Replaces all data",
+  "exportFullSubtitle": "JSON, with history",
   "resetData": "Factory Reset",
   "dangerZone": "Danger Zone",
   "confirmReset": "Are you sure you want to reset all data? This cannot be undone.",
   "success": "Success",
   "error": "Error",
+  "importFailed": "Failed to import data",
+  "ok": "OK",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "close": "Close",
+  "delete": "Delete",
+  "update": "Update",
+  "loading": "Loading",
+  "dismissGuide": "Dismiss tip",
   "lifetime": "Lifetime",
   "daily": "Daily",
   "reset": "Reset",
-  "recent": "Recent",
   "unlimited": "Unlimited",
   "items": "Items",
+  "itemCount_one": "{{count}} item",
+  "itemCount_other": "{{count}} items",
   "dua": "Dua",
+  "dhikr": "Dhikr",
   "surah": "Surah",
   "ayah": "Ayah",
   "deed": "Deed",
@@ -42,10 +52,6 @@
   "done": "Done",
   "preset": "Preset",
   "all": "All",
-  "quranic": "Quranic",
-  "morning": "Morning",
-  "evening": "Evening",
-  "prophetic": "Prophetic",
   "hisnul_muslim": "Hisnul Muslim",
   "noItemsFound": "No items found",
   "listen": "Listen",
@@ -66,18 +72,19 @@
   "randomMix": "Daily Mix",
   "randomMixDescription": "10 random names",
   "reviewLearned": "Review Learned",
-  "reviewLearnedDescription": "{{count}} names available",
+  "reviewLearnedDescription_one": "{{count}} name available",
+  "reviewLearnedDescription_other": "{{count}} names available",
   "playAgain": "Play Again",
   "correct": "Correct!",
   "incorrect": "Incorrect",
-  "markLearned": "Mark Learned",
+  "markLearned": "Mark as Learned",
   "unmarkLearned": "Review Later",
   "continue": "Continue",
   "yourProgress": "Your Progress",
   "namesLearned": "Names Learned",
   "testComplete": "Test Complete!",
   "question": "Question",
-  "selectCorrectName": "Select the correct name",
+  "selectCorrectName": "Select the correct meaning",
   "reveal": "Reveal",
   "next": "Next",
   "backToNames": "Back to List",
@@ -87,54 +94,51 @@
   "targetCount": "Target Count",
   "noPresetsFound": "No presets found",
   "editPreset": "Edit Preset",
+  "deletePreset": "Delete Preset",
   "target": "Target",
   "addItem": "Add Item",
   "selectItem": "Select Item",
-  "selectDhikr": "Select Dhikr",
-  "addDhikr": "Add Dhikr",
   "count": "Count",
   "deletePresetConfirm": "Are you sure you want to delete this preset?",
   "resetPresetConfirm": "Are you sure you want to reset progress for this preset?",
+  "resetConfirm": "Are you sure you want to reset the counter?",
   "searchPlaceholder": "Search...",
   "save": "Save",
   "category": "Category",
   "title": "Title",
   "native": "Native",
+  "english": "English",
+  "optional": "Optional",
+  "virtues": "Virtues",
+  "placeholderDhikrTitle": "e.g. SubhanAllah",
+  "placeholderDhikrDesc": "e.g. Virtue: forgiveness of sins...",
+  "placeholderVirtues": "e.g. Recite 100 times for forgiveness",
+  "placeholderReference": "e.g. Muslim 123",
   "arabic": "Arabic",
   "transliteration": "Transliteration",
   "translation": "Translation",
   "reference": "Reference",
   "deleteItem": "Delete Item",
   "deleteItemConfirm": "Are you sure you want to delete this item?",
-  "titleRequired": "Title is required",
+  "titleRequired": "English title is required",
   "editItem": "Edit Item",
   "statistics": "Statistics",
   "description": "Description",
   "create": "Create",
   "stats": "Statistics",
-  "backup": "Backup",
-  "exportAll": "Full Backup",
-  "recommended": "Recommended",
-  "exportDataOnly": "Structure Only",
-  "restore": "Restore",
   "importMerge": "Import (Merge)",
+  "importMergeSubtitle": "Keeps existing data",
   "importOverwrite": "Restore (Overwrite)",
-  "exportSuccess": "Export successful",
-  "importSuccess": "Import successful",
-  "resetAllData": "Reset All Data",
-  "currentStreak": "Current Streak",
-  "bestStreak": "Best Streak",
-  "weeklyActivity": "Weekly Activity",
-  "monthlyHeatmap": "Monthly Overview",
+  "importOverwriteSubtitle": "Replaces all data",
+  "importSuccess": "Data imported successfully",
   "streak": "Streak",
-  "days": "Days",
+  "days_one": "day",
+  "days_other": "days",
   "today": "Today",
-  "week": "Week",
-  "month": "Month",
-  "learn": "Learn",
+  "week": "Last 7 Days",
+  "month": "Last 30 Days",
   "learnArabic": "Learn Arabic",
   "masterLetters": "Master the alphabet and pronunciation.",
-  "yourProgress": "Your Progress",
   "lettersLearned": "Letters Mastered",
   "takeQuiz": "Take a Quiz",
   "testYourKnowledge": "Test your knowledge of letters",
@@ -142,12 +146,10 @@
   "youScored": "You scored",
   "backToLearn": "Back to Learn",
   "tryAgain": "Try Again",
-  "next": "Next",
   "prev": "Previous",
   "finish": "Finish",
   "whatLetterIsThis": "What letter is this?",
   "whichSymbolIs": "Which symbol is",
-  "markLearned": "Mark as Learned",
   "markUnread": "Review Again",
   "letterForms": "Letter Forms",
   "pronunciation": "Pronunciation",
@@ -167,16 +169,14 @@
   "generateWord": "Generate Word",
   "play": "Play",
   "check": "Check",
-  "correct": "Correct!",
-  "incorrect": "Incorrect, try again.",
   "enterTranscription": "Enter Transcription",
   "submit": "Submit",
   "read": "Read",
   "write": "Write",
-  "tapLettersBelow": "Tap letters below",
+  "tapLettersBelow": "Tap the letters below",
   "correctAnswer": "Correct Answer",
   "letterNotFound": "Letter not found",
-  "backToList": "Back to list",
+  "backToList": "Back to List",
   "resetProgress": "Reset Progress",
   "confirmResetProgress": "Are you sure you want to reset all learning progress? This cannot be undone.",
   "constructWord": "Construct this word:",
@@ -185,6 +185,19 @@
   "initial": "Initial",
   "medial": "Medial",
   "final": "Final",
+  "transcriptionPlaceholder": "e.g. ba-ti",
+  "noNamesMatchFilter": "No names match the filter.",
+  "ruleNotFound": "Rule not found",
+  "backToTajweed": "Back to Tajweed",
+  "learningMode": "Learning Mode",
+  "quizMode": "Quiz Mode",
+  "lettersInvolved": "Letters Involved",
+  "noQuizQuestions": "No quiz questions available for this rule yet.",
+  "reviewRule": "Review Rule",
+  "nextQuestion": "Next Question",
+  "questionsTotal": "{{count}} total",
+  "scoreOutOf": "{{score}} out of {{total}}",
+  "hifzQuote": "\"And We have certainly made the Quran easy for remembrance, so is there any who will remember?\" (54:17)",
   "letters": {
     "fatha": {
       "name": "Fatha",
@@ -198,7 +211,7 @@
     },
     "damma": {
       "name": "Damma",
-      "description": "A small loop (like a wow) above a letter. Represents a short 'u' vowel.",
+      "description": "A small loop (like a small Waw) above a letter. Represents a short 'u' vowel.",
       "pronunciation": "Short 'u' sound (above letter)"
     },
     "sukun": {
@@ -209,7 +222,7 @@
     "alif": {
       "name": "Alif",
       "description": "Alif is the first letter. It is often a long vowel 'aa'. It is a 'selfish' letter, meaning it only connects to the right.",
-      "pronunciation": "Open 'a' sound like in 'father', or a glottal stop"
+      "pronunciation": "Long 'ā' like in 'father'. When it carries a hamza (أ / إ) it is a glottal stop."
     },
     "ba": {
       "name": "Ba",
@@ -232,9 +245,9 @@
       "pronunciation": "Like 'j' in 'jam'"
     },
     "ha": {
-      "name": "Ha",
+      "name": "Ḥa",
       "description": "Ha has no dots. Connects both sides.",
-      "pronunciation": "Sharp 'h', from the throat. Like exhaling relief."
+      "pronunciation": "Sharp, breathy 'h' from the middle of the throat, like breathing on cold hands."
     },
     "kha": {
       "name": "Kha",
@@ -254,7 +267,7 @@
     "ra": {
       "name": "Ra",
       "description": "Ra connects only to the right.",
-      "pronunciation": "Rolled 'r', like Spanish 'pero'"
+      "pronunciation": "Tapped 'r', like Spanish 'pero'"
     },
     "zay": {
       "name": "Zay",
@@ -274,32 +287,32 @@
     "sad": {
       "name": "Sad",
       "description": "Sad has a loop shape. Connects both sides.",
-      "pronunciation": "Emphatic 'S'. Deep sound from throat."
+      "pronunciation": "Heavy (emphatic) 's': tongue tip as for 's', with the back of the tongue raised."
     },
     "dad": {
       "name": "Dad",
       "description": "Dad is like Sad but with a dot above. Connects both sides.",
-      "pronunciation": "Emphatic 'D'. Deep sound."
+      "pronunciation": "Heavy (emphatic) 'd': the side of the tongue presses against the upper molars."
     },
     "tah": {
       "name": "Ta (Emphatic)",
       "description": "Connects both sides.",
-      "pronunciation": "Emphatic 'T'. Deep sound."
+      "pronunciation": "Heavy (emphatic) 't': tongue tip behind the upper teeth, back of the tongue raised."
     },
     "zah": {
       "name": "Za (Emphatic)",
       "description": "Like Ta but with a dot. Connects both sides.",
-      "pronunciation": "Emphatic 'TH' (like in 'that'). Deep sound."
+      "pronunciation": "Heavy (emphatic) 'th' as in 'that': tongue tip on the edge of the upper teeth, back of the tongue raised."
     },
     "ayn": {
       "name": "Ayn",
       "description": "Ayn changes shape significantly in the middle/end. Connects both sides.",
-      "pronunciation": "Deep throat sound. Constrict throat."
+      "pronunciation": "Voiced sound from the middle of the throat, made by tightening the throat."
     },
     "ghayn": {
       "name": "Ghayn",
       "description": "Like Ayn but with a dot above. Connects both sides.",
-      "pronunciation": "Gargling sound like French 'r'."
+      "pronunciation": "Gargling sound from the upper throat, like French 'r'."
     },
     "fa": {
       "name": "Fa",
@@ -309,7 +322,7 @@
     "qaf": {
       "name": "Qaf",
       "description": "Qaf has two dots above. Connects both sides.",
-      "pronunciation": "Deep 'k' from back of throat."
+      "pronunciation": "Deep 'q': the back of the tongue touches the soft palate (near the uvula)."
     },
     "kaf": {
       "name": "Kaf",
@@ -353,7 +366,7 @@
     },
     "kasratan": {
       "name": "Kasratan",
-      "description": "Double Kasra. Makes an 'in' sound using below the letter.",
+      "description": "Double Kasra below the letter. Makes an 'in' sound.",
       "pronunciation": "'in' sound"
     },
     "dammatan": {
@@ -374,7 +387,7 @@
     "settingsTitle": "Settings",
     "settingsDesc": "Manage app preferences, language, theme, and backup your data.",
     "libraryTitle": "Library",
-    "libraryDesc": "Browse and search the collection of dhikrs and duas. Click on any item to open the counter.",
+    "libraryDesc": "Browse and search the collection of duas and surahs. Tap any item to open it.",
     "learnTitle": "Learning Center",
     "learnDesc": "Learn the basics of Quranic reading (Tajweed) and pronunciation.",
     "presetsTitle": "Presets",
@@ -382,7 +395,7 @@
     "manageTitle": "Manage Dhikr",
     "manageDesc": "Customize the dhikr details, set daily targets, or reset the counter.",
     "dhikrTitle": "Counter",
-    "dhikrDesc": "Tap anywhere on the screen to count. Long press or use the menu button for options.",
+    "dhikrDesc": "Tap anywhere in the main area to count. Use the settings button for more options.",
     "dhikrListTitle": "Dhikr List",
     "dhikrListDesc": "Your personal list of dhikrs. Select one to start counting.",
     "presetsManageTitle": "Manage Preset",
@@ -395,5 +408,13 @@
     "learnHifzDesc": "Tips and methods for memorizing the Quran.",
     "learnEsmaTitle": "Asmaul Husna",
     "learnEsmaDesc": "Learn and memorize the 99 Beautiful Names of Allah."
-  }
+  },
+  "tajweedCategories": {
+    "general": "General Rules",
+    "nunSakinah": "Nun Sakinah & Tanwin",
+    "mimSakinah": "Mim Sakinah",
+    "madd": "Madd (Elongation)",
+    "stopStart": "Stop & Start"
+  },
+  "notes": "Notes"
 }

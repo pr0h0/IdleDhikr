@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 
 interface ModalProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export const Modal: React.FC<ModalProps> = ({
   children,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -36,10 +38,13 @@ export const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm animate-fade-in sm:items-center sm:p-4">
       <div
         ref={modalRef}
-        className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-100 dark:border-slate-800"
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        className="w-full max-w-md overflow-hidden rounded-t-3xl border border-slate-200 bg-white pb-[env(safe-area-inset-bottom)] shadow-2xl animate-sheet-in dark:border-white/[0.07] dark:bg-slate-900 sm:rounded-3xl sm:pb-0"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-800">
@@ -48,12 +53,13 @@ export const Modal: React.FC<ModalProps> = ({
           </h2>
           <button
             onClick={onClose}
+            aria-label={t("close")}
             className="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors"
           >
             <X size={20} />
           </button>
         </div>
-        <div className="p-4 max-h-[70vh] overflow-y-auto">{children}</div>
+        <div className="max-h-[75dvh] overflow-y-auto p-4">{children}</div>
       </div>
       <div className="absolute inset-0 -z-10" onClick={onClose} />
     </div>,

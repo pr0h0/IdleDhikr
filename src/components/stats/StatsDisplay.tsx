@@ -86,7 +86,7 @@ export const StatsDisplay: React.FC<StatsDisplayProps> = ({ itemId }) => {
             <Trophy size={20} />
             {currentStreak}{" "}
             <span className="text-sm font-normal text-slate-400">
-              {t("days")}
+              {t("days", { count: currentStreak })}
             </span>
           </div>
         </div>
