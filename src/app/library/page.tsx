@@ -103,7 +103,7 @@ export default function LibraryList() {
       <div className="grid gap-4">
         {filteredDuas.map((dua) => (
           <Link
-            href={`/library/${dua.id}`}
+            href={`/library/dua?id=${dua.id}`}
             key={dua.id}
             className="block group"
           >

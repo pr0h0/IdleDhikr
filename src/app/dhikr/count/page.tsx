@@ -5,11 +5,10 @@ import { Loading } from "@/components/ui/Loading";
 import { useStore } from "@/hooks/useStore";
 import {
   notFound,
-  useParams,
-  useRouter,
   useSearchParams,
+  useRouter,
 } from "next/navigation";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, Suspense } from "react";
 import { LanguageCode } from "@/types";
 import { useTranslation } from "react-i18next";
 import {
@@ -36,8 +35,8 @@ import { getTodayDateString } from "@/lib/dateUtils";
 import { motion, AnimatePresence } from "framer-motion";
 import { StatsDisplay } from "@/components/stats/StatsDisplay";
 
-export default function DhikrCounter() {
-  const { id } = useParams();
+function DhikrCounter() {
+  const id = useSearchParams().get("id") ?? "";
   const searchParams = useSearchParams();
   const presetId = searchParams.get("presetId");
   const indexParam = searchParams.get("index");
@@ -101,9 +100,9 @@ export default function DhikrCounter() {
       const getLink = (item: (typeof preset.items)[0], i: number) => {
         const base =
           item.type === "dhikr"
-            ? `/dhikr/${item.itemId}`
-            : `/library/${item.itemId}`;
-        return `${base}?presetId=${presetId}&index=${i}`;
+            ? `/dhikr/count?id=${item.itemId}`
+            : `/library/dua?id=${item.itemId}`;
+        return `${base}&presetId=${presetId}&index=${i}`;
       };
 
       return {
@@ -193,7 +192,7 @@ export default function DhikrCounter() {
       if (nextLink) {
         setTimeout(() => router.push(nextLink), 500);
       } else if (isLastItem && presetId) {
-        setTimeout(() => router.push(`/presets/${presetId}`), 500);
+        setTimeout(() => router.push(`/presets/view?id=${presetId}`), 500);
       }
     }
   };
@@ -241,7 +240,7 @@ export default function DhikrCounter() {
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <Link
-          href={presetId ? `/presets/${presetId}` : "/dhikr"}
+          href={presetId ? `/presets/view?id=${presetId}` : "/dhikr"}
           className="grid size-10 place-items-center rounded-full bg-white/70 text-slate-500 shadow-sm hover:text-slate-800 dark:bg-slate-900/70 dark:hover:text-slate-200"
         >
           <ArrowLeft size={20} />
@@ -451,7 +450,7 @@ export default function DhikrCounter() {
             ) : (
               isLastItem && (
                 <Link
-                  href={`/presets/${presetId}`}
+                  href={`/presets/view?id=${presetId}`}
                   className="p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-full text-emerald-600 dark:text-emerald-400 hover:scale-110 transition-transform"
                 >
                   <List size={24} />
@@ -516,5 +515,14 @@ export default function DhikrCounter() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function Page() {
+  // useSearchParams needs a Suspense boundary in a static export.
+  return (
+    <Suspense>
+      <DhikrCounter />
+    </Suspense>
   );
 }

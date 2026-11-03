@@ -113,7 +113,7 @@ export default function LearnPage() {
           const isLearned = letterProgress?.isLearned;
 
           return (
-            <Link href={`/learn/${letter.id}`} key={letter.id}>
+            <Link href={`/learn/letter?id=${letter.id}`} key={letter.id}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}

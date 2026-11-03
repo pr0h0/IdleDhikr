@@ -5,7 +5,6 @@ import { Loading } from "@/components/ui/Loading";
 import { db } from "@/lib/db";
 import {
   notFound,
-  useParams,
   useSearchParams,
   useRouter,
 } from "next/navigation";
@@ -22,13 +21,13 @@ import {
   Edit,
 } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, Suspense } from "react";
 import { useTTS } from "@/hooks/useTTS";
 import { AddToPresetModal } from "@/components/ui/AddToPresetModal";
 import { getTodayDateString } from "@/lib/dateUtils";
 
-export default function DuaDetail() {
-  const { id } = useParams();
+function DuaDetail() {
+  const id = useSearchParams().get("id") ?? "";
   const searchParams = useSearchParams();
   const presetId = searchParams.get("presetId");
   const indexParam = searchParams.get("index");
@@ -82,9 +81,9 @@ export default function DuaDetail() {
       const getLink = (item: (typeof preset.items)[0], i: number) => {
         const base =
           item.type === "dhikr"
-            ? `/dhikr/${item.itemId}`
-            : `/library/${item.itemId}`;
-        return `${base}?presetId=${presetId}&index=${i}`;
+            ? `/dhikr/count?id=${item.itemId}`
+            : `/library/dua?id=${item.itemId}`;
+        return `${base}&presetId=${presetId}&index=${i}`;
       };
 
       return {
@@ -152,7 +151,7 @@ export default function DuaDetail() {
     if (nextLink) {
       router.push(nextLink);
     } else if (isLastItem && presetId) {
-      router.push(`/presets/${presetId}`);
+      router.push(`/presets/view?id=${presetId}`);
     }
   };
 
@@ -160,7 +159,7 @@ export default function DuaDetail() {
     <div className="space-y-6 pb-20 flex flex-col min-h-[80vh]">
       <header className="flex items-center gap-4 mb-6">
         <Link
-          href={presetId ? `/presets/${presetId}` : "/library"}
+          href={presetId ? `/presets/view?id=${presetId}` : "/library"}
           className="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
         >
           <ArrowLeft size={24} />
@@ -318,7 +317,7 @@ export default function DuaDetail() {
               ) : (
                 isLastItem && (
                   <Link
-                    href={`/presets/${presetId}`}
+                    href={`/presets/view?id=${presetId}`}
                     className="p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-full text-emerald-600 dark:text-emerald-400 hover:scale-110 transition-transform"
                   >
                     <List size={24} />
@@ -330,5 +329,14 @@ export default function DuaDetail() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function Page() {
+  // useSearchParams needs a Suspense boundary in a static export.
+  return (
+    <Suspense>
+      <DuaDetail />
+    </Suspense>
   );
 }

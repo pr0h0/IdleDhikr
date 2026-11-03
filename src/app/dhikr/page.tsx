@@ -79,7 +79,7 @@ export default function DhikrList() {
           const done = dhikr.target > 0 && dhikr.countDaily >= dhikr.target;
           return (
             <Link
-              href={`/dhikr/${dhikr.id}`}
+              href={`/dhikr/count?id=${dhikr.id}`}
               key={dhikr.id}
               className={cn(
                 "card group flex items-center gap-4 p-4 hover:border-emerald-500/40 active:scale-[0.99]",

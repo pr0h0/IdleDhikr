@@ -1,9 +1,9 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import {
   ArrowLeft,
   BookOpen,
@@ -16,8 +16,8 @@ import {
 import { TAJWEED_RULES, TajweedRule } from "@/lib/tajweedData";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function TajweedRulePage() {
-  const { id } = useParams();
+function TajweedRulePage() {
+  const id = useSearchParams().get("id") ?? "";
   const { t, i18n } = useTranslation();
   const lang = (i18n.language?.startsWith("bs") ? "bs" : "en") as "bs" | "en";
 
@@ -347,5 +347,14 @@ function QuizView({
         </div>
       )}
     </motion.div>
+  );
+}
+
+export default function Page() {
+  // useSearchParams needs a Suspense boundary in a static export.
+  return (
+    <Suspense>
+      <TajweedRulePage />
+    </Suspense>
   );
 }

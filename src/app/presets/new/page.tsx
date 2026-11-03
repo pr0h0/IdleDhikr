@@ -25,7 +25,7 @@ export default function NewPresetPage() {
       order: Date.now(),
     });
     // Redirect to edit page
-    router.push(`/presets/edit/${id}`);
+    router.push(`/presets/edit?id=${id}`);
   };
 
   return (

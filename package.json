@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "deploy": "next build && npx -y wrangler@4.156.2 pages deploy out --project-name idledhikr --branch master",
     "lint": "eslint"
   },
   "dependencies": {

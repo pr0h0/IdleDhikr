@@ -3,19 +3,19 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Loading } from "@/components/ui/Loading";
 import { db } from "@/lib/db";
-import { notFound, useParams, useRouter } from "next/navigation";
+import { notFound, useSearchParams, useRouter } from "next/navigation";
 import { Dhikr, Dua, PresetItem, LanguageCode } from "@/types";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, Plus, X, Save, Search } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Reorder } from "framer-motion";
 import { SortablePresetItem } from "./SortablePresetItem";
 import { PageGuide } from "@/components/ui/PageGuide";
 
 const generateId = () => crypto.randomUUID();
 
-export default function EditPreset() {
-  const { id } = useParams();
+function EditPreset() {
+  const id = useSearchParams().get("id") ?? "";
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const lang = i18n.language as LanguageCode;
@@ -92,7 +92,7 @@ export default function EditPreset() {
   const handleSave = async () => {
     await db.presets.update(preset.id, { items });
     setHasUnsavedChanges(false);
-    router.push(`/presets/${preset.id}`);
+    router.push(`/presets/view?id=${preset.id}`);
   };
 
   const getItem = (id: string, type: "dhikr" | "dua") => {
@@ -260,5 +260,14 @@ export default function EditPreset() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function Page() {
+  // useSearchParams needs a Suspense boundary in a static export.
+  return (
+    <Suspense>
+      <EditPreset />
+    </Suspense>
   );
 }

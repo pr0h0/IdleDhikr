@@ -3,7 +3,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Loading } from "@/components/ui/Loading";
 import { db } from "@/lib/db";
-import { notFound, useParams, useRouter } from "next/navigation";
+import { notFound, useSearchParams, useRouter } from "next/navigation";
 import { LanguageCode } from "@/types";
 import { useTranslation } from "react-i18next";
 import {
@@ -15,13 +15,13 @@ import {
   Edit,
   RotateCcw,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import Link from "next/link";
 import { StatsDisplay } from "@/components/stats/StatsDisplay";
 
-export default function PresetDetail() {
-  const { id } = useParams();
+function PresetDetail() {
+  const id = useSearchParams().get("id") ?? "";
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const lang = i18n.language as LanguageCode;
@@ -78,7 +78,7 @@ export default function PresetDetail() {
             <RotateCcw size={24} />
           </button>
           <Link
-            href={`/presets/edit/${preset.id}`}
+            href={`/presets/edit?id=${preset.id}`}
             className="p-2 text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full"
           >
             <Edit size={24} />
@@ -141,7 +141,7 @@ export default function PresetDetail() {
                   />
                 </div>
               );
-              link = `/dhikr/${d.id}?presetId=${preset.id}`;
+              link = `/dhikr/count?id=${d.id}&presetId=${preset.id}`;
             } else {
               const d = getDua(item.itemId);
               if (!d) return null;
@@ -159,7 +159,7 @@ export default function PresetDetail() {
                   />
                 </div>
               );
-              link = `/library/${d.id}?presetId=${preset.id}`;
+              link = `/library/dua?id=${d.id}&presetId=${preset.id}`;
             }
 
             return (
@@ -198,5 +198,14 @@ export default function PresetDetail() {
         confirmText={t("reset") || "Reset"}
       />
     </div>
+  );
+}
+
+export default function Page() {
+  // useSearchParams needs a Suspense boundary in a static export.
+  return (
+    <Suspense>
+      <PresetDetail />
+    </Suspense>
   );
 }

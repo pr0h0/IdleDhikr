@@ -80,7 +80,7 @@ export default function TajweedListPage() {
                 {rules.map((rule) => (
                   <Link
                     key={rule.id}
-                    href={`/learn/tajweed/${rule.id}`}
+                    href={`/learn/tajweed/rule?id=${rule.id}`}
                     className="group bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all flex items-center justify-between"
                   >
                     <div className="flex items-center gap-4">

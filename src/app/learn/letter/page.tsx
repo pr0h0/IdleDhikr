@@ -1,7 +1,9 @@
 "use client";
 
+import { Suspense } from "react";
+
 import React, { useState } from "react";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { ARABIC_LETTERS } from "@/lib/arabicData";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/lib/db";
@@ -140,8 +142,8 @@ function HighlightedWord({
   );
 }
 
-export default function LetterDetail() {
-  const { id } = useParams();
+function LetterDetail() {
+  const id = useSearchParams().get("id") ?? "";
   // ... (rest of component)
 
   const { t, i18n } = useTranslation();
@@ -181,7 +183,7 @@ export default function LetterDetail() {
         quizScore: 0,
       });
       // Optional: Auto advance if marking as learned
-      // if (nextLetter) router.push(`/learn/${nextLetter.id}`);
+      // if (nextLetter) router.push(`/learn/letter?id=${nextLetter.id}`);
     }
   };
 
@@ -337,7 +339,7 @@ export default function LetterDetail() {
       <div className="fixed bottom-20 left-0 right-0 p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 flex justify-between max-w-md mx-auto z-40 safe-area-bottom">
         {prevLetter ? (
           <Link
-            href={`/learn/${prevLetter.id}`}
+            href={`/learn/letter?id=${prevLetter.id}`}
             className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-bold hover:text-emerald-500"
           >
             <ArrowLeft size={20} />
@@ -359,7 +361,7 @@ export default function LetterDetail() {
 
         {nextLetter ? (
           <Link
-            href={`/learn/${nextLetter.id}`}
+            href={`/learn/letter?id=${nextLetter.id}`}
             className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-bold hover:text-emerald-500"
           >
             <div className="flex flex-col items-end">
@@ -393,5 +395,14 @@ function FormCard({ label, char }: { label: string; char: string }) {
         {label}
       </span>
     </div>
+  );
+}
+
+export default function Page() {
+  // useSearchParams needs a Suspense boundary in a static export.
+  return (
+    <Suspense>
+      <LetterDetail />
+    </Suspense>
   );
 }

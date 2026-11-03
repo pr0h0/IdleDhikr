@@ -1,5 +1,6 @@
 // Network-first with cache fallback, so the app keeps working offline
-// after its pages and assets have been visited once.
+// after its pages and assets have been visited once. Navigations ignore the
+// query string, so ?id= pages work offline for any id once the page was seen.
 const CACHE = "idledhikr-v2";
 
 self.addEventListener("install", () => self.skipWaiting());
@@ -27,7 +28,7 @@ self.addEventListener("fetch", (event) => {
         return res;
       })
       .catch(() =>
-        caches.match(request).then(async (hit) => hit || (await (request.mode === "navigate" ? caches.match("/dhikr") : null)) || Response.error()),
+        caches.match(request, { ignoreSearch: request.mode === "navigate" }).then(async (hit) => hit || (await (request.mode === "navigate" ? caches.match("/dhikr") : null)) || Response.error()),
       ),
   );
 });

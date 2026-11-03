@@ -35,7 +35,7 @@ export default function PresetList() {
         {presets.map((preset) => (
           <Link
             key={preset.id}
-            href={`/presets/${preset.id}`}
+            href={`/presets/view?id=${preset.id}`}
             className="block"
           >
             <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all shadow-sm group relative overflow-hidden">
